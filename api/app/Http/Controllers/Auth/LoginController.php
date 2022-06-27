@@ -33,7 +33,7 @@ class LoginController extends Controller
                 $token = auth()
                     ->user()
                     ->createToken('Auth Token')
-                    ->accessToken;
+                    ->plainTextToken;
 
                 return response()->json(['token' => $token], 200);
             }
