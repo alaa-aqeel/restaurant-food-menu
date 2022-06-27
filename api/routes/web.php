@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\API\v1\AuthController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,15 +15,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix("auth")
+Route::middleware("guest")
     ->name("auth.")
     ->group(function(){
 
-        Route::get("/login", fn() => view("auth.login"))
+        Route::get("", fn() => view("auth.login"))
             ->name("login.view");
         
-        Route::post('/login', [AuthController::class, "login"])
+        Route::post('/login', [LoginController::class, "login"])
             ->name("login.post");
+    });
+
+
+Route::middleware("auth:web")
+    ->group(function(){
+
+        Route::post("/logout", function(){
+                auth()->logout();
+                return redirect(route("auth.login.view"));
+            })->name("auth.logout");
+
+        Route::get("/dashboard", fn() => view("dashboard"))
+            ->name("dashboard");
+
+        Route::resource("users", UserController::class);
+        
     });
 
 

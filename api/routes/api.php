@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\API\v1\AccountController;
-use App\Http\Controllers\API\v1\AuthController;
 use App\Http\Controllers\API\v1\FoodController;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::post("/login", [AuthController::class, "login"]);
+Route::post("/login", [LoginController::class, "login"]);
 
 Route::middleware('auth:sanctum')
     ->prefix("app.")
@@ -35,6 +35,6 @@ Route::middleware('auth:sanctum')
                 // TODO: update password 
             });
             
-        Route::apiResource("/food", FoodController::class);
-        Route::apiResource("/category", CategoryController::class);
+        // Route::apiResource("/food", FoodController::class);
+        // Route::apiResource("/category", CategoryController::class);
     });
