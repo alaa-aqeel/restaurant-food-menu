@@ -1,0 +1,40 @@
+<?php
+
+use App\Http\Controllers\API\v1\AccountController;
+use App\Http\Controllers\API\v1\AuthController;
+use App\Http\Controllers\API\v1\FoodController;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
+|
+*/
+
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::post("/login", [AuthController::class, "login"]);
+
+Route::middleware('auth:sanctum')
+    ->prefix("app.")
+    ->group(function(){
+
+        Route::controller(AccountController::class)
+            ->name("account.")
+            ->prefix("account")
+            ->group(function(){
+                // TODO: update account 
+                // TODO: update menu 
+                // TODO: update password 
+            });
+            
+        Route::apiResource("/food", FoodController::class);
+        Route::apiResource("/category", CategoryController::class);
+    });
