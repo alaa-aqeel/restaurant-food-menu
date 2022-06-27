@@ -1,4 +1,4 @@
-<nav class="px-2 m-2 mx-8 sm:px-4 py-2.5 rounded bg-gray-800 shadow shadow-yellow-800 w-full">
+<nav class="px-2 m-2 mx-8 sm:px-4 py-2.5 rounded-lg bg-gray-800 shadow-lg shadow-yellow-800 w-full">
    <div class="container flex flex-wrap items-center mx-auto gap-10">
         
         <div>

@@ -20,9 +20,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'username',
-        'phone_number',
+        'phone',
         'expire_at',
         'password',
+        'is_admin'
     ];
 
     /**
@@ -35,15 +36,7 @@ class User extends Authenticatable
         'expire_at',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'expire_at' => 'datetime',
-    ];
-
+ 
     /**
      * Get the menu for the user 
      * 

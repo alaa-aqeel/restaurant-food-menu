@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\API\v1\AccountController;
+use App\Http\Controllers\API\v1\CategoryController;
 use App\Http\Controllers\API\v1\FoodController;
+use App\Http\Controllers\API\v1\MenuController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,25 +18,43 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
-Route::post("/login", [LoginController::class, "login"]);
-
-Route::middleware('auth:sanctum')
-    ->prefix("app.")
+Route::prefix("v1")
     ->group(function(){
+        Route::post("login", [LoginController::class, "login"]);
 
-        Route::controller(AccountController::class)
-            ->name("account.")
-            ->prefix("account")
+
+        Route::middleware('auth:sanctum')
+            ->name("app.")
             ->group(function(){
-                // TODO: update account 
-                // TODO: update menu 
-                // TODO: update password 
+
+                Route::controller(AccountController::class)
+                    ->name("account.")
+                    ->prefix("account")
+                    ->group(function(){
+                        Route::controller(AccountController::class)
+                            ->prefix("profile")
+                            ->name("profile.")
+                            ->group(function(){
+                                Route::get("", "getAccount");
+                                Route::put("update", "updateAccount");
+                            });
+                    });
+                    
+                Route::controller(MenuController::class)
+                    ->prefix("menu")
+                    ->name("menu.")
+                    ->group(function(){
+                        Route::get("", "getMenu")->name("get");
+                        Route::post("update", "updateMenu")->name("update");
+                        
+
+                        Route::apiResource("/category", CategoryController::class);
+                    });
+
+                    
+                // Route::apiResource("/food", FoodController::class);
+                
             });
-            
-        // Route::apiResource("/food", FoodController::class);
-        // Route::apiResource("/category", CategoryController::class);
     });
+

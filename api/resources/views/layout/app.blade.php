@@ -4,7 +4,7 @@
 
 @section("content") 
 
-    <div class="bg-slate-50 h-28 flex items-center">
+    <div class="bg-slate-50 h-24 flex items-center">
         @component('components.navbar')
         @endcomponent
     </div>

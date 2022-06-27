@@ -14,7 +14,7 @@ class UserRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;//auth()->check() && auth()->user()->is_admin;
+        return auth()->check() && auth()->user()->is_admin;
     }
 
     /**
@@ -24,13 +24,26 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            "name" => "required",
-            "username" => "required|min:2|unique:users,username,".$this->user,
-            "phone" => "nullable|min:11|max:15|unique:users,phone,".$this->user,
-            "expire_at" => "nullable|date",
-            "is_admin" => "integer",
-            "password" => ['required', Password::min(8)->uncompromised()],
-        ];
+        switch($this->method()){
+            case 'POST':
+                return [
+                    "name" => "required",
+                    "username" => "required|min:2|unique:users,username,".$this->user,
+                    "phone" => "nullable|min:11|max:15|unique:users,phone,".$this->user,
+                    "expire_at" => "nullable|date",
+                    "is_admin" => "integer",
+                    "password" => ['required', Password::min(8)->uncompromised()],
+                ];
+
+            case 'PUT':
+                return [
+                    "name" => "string",
+                    "username" => "min:2|unique:users,username,".$this->user,
+                    "phone" => "nullable|min:11|max:15|unique:users,phone,".$this->user,
+                    "expire_at" => "nullable|date",
+                    "is_admin" => "integer",
+                    "password" => ["nullable", Password::min(8)->uncompromised()],
+                ];
+        }
     }
 }

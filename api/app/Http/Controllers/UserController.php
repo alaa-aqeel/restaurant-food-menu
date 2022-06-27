@@ -56,7 +56,6 @@ class UserController extends Controller
      */
     public function create()
     {
-        
         return view("create_user", [
             "action" => route("users.store")
         ]);

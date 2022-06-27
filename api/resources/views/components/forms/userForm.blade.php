@@ -33,7 +33,7 @@
         name="password"
         label="Password"
         placeholder="Enter password"
-        :value="$values['password'] ?? ''"
+        value=""
     />
 
     <div class="flex items-center my-4 px-2">
