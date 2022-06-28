@@ -27,7 +27,7 @@ Route::middleware("guest")
     });
 
 
-Route::middleware("auth:web")
+Route::middleware(["auth:web", 'user.is_admin'])
     ->group(function(){
 
         Route::post("/logout", function(){
