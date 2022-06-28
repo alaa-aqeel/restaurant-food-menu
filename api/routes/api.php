@@ -40,7 +40,7 @@ Route::prefix("v1")
                                 Route::put("update", "updateAccount");
                             });
                     });
-                    
+
                 Route::controller(MenuController::class)
                     ->prefix("menu")
                     ->name("menu.")
@@ -49,12 +49,12 @@ Route::prefix("v1")
                         Route::post("update", "updateMenu")->name("update");
                         
 
-                        Route::apiResource("/category", CategoryController::class);
-                    });
-
-                    
-                // Route::apiResource("/food", FoodController::class);
-                
+                        Route::middleware("user.check_menu")
+                            ->group(function(){
+                                Route::apiResource("/category", CategoryController::class);
+                                Route::apiResource("category.food", FoodController::class);
+                            });
+                    });   
             });
     });
 
