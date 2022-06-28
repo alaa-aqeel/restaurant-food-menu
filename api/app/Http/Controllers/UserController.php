@@ -102,6 +102,9 @@ class UserController extends Controller
     public function update(UserRequest $request, $id)
     {
         $validatedData = $request->validated();
+
+        // Is checkbox  set 0 or 1 
+        $validatedData['is_admin'] = (int)isset($validatedData['is_admin']);
         $this->user->update($id, $validatedData);
        
         return back()->with("message", __("messages.success_updated"));

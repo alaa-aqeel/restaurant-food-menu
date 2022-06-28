@@ -20,6 +20,7 @@ class AccountResource extends JsonResource
             "username" => $this->username,
             "phone" => $this->phone,
             "created_at" => $this->created_at,
+            "is_admin" => $this->when($this->is_admin, $this->is_admin),
             "menu" => new MenuResource($this->menu) ,
         ];
     }

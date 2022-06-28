@@ -17,10 +17,12 @@ class MenuResource extends JsonResource
         return [
             "id" => $this->id,
             "title" => $this->title,
+            "title_slug" => $this->slug,
             "address" => $this->address,
             "work_time" => $this->work_time,
             "image" => $this->image,
             "description" => $this->description,
+
         ];
     }
 }

@@ -14,6 +14,16 @@ class UserRepository extends BaseRepository  implements UserRepositoryInterface
         $this->setModel(User::class);
     }
 
+    private function encryptPassword(mixed &$data)
+    {
+        if (isset($data['password']) && !is_null($data['password'])){
+            $data['password'] = Hash::make($data['password']);
+        } else {
+            unset($data['password']);
+        }
+    }
+    
+
     /**
      * filter records
      * 
@@ -38,25 +48,15 @@ class UserRepository extends BaseRepository  implements UserRepositoryInterface
     }
 
 
-    private function encryptPassword(mixed &$data)
-    {
-        if (isset($data['password']) && !is_null($data['password'])){
-            $data['password'] = Hash::make($data['password']);
-        } else {
-            unset($data['password']);
-        }
-        
-    }
-    
     public function create(array $data)
     {
         $this->encryptPassword($data);
         return parent::create($data);
     }
 
+
     public function update(int $id, array $data)
     {
-        $data['is_admin'] = (int)isset($validatedData['is_admin']);
         $this->encryptPassword($data);
         return parent::update($id, $data);
     }
