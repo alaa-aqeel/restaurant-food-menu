@@ -5,11 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Food extends Model
 {
     use HasFactory;
-
-    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -20,7 +18,10 @@ class Category extends Model
         'name',
         'slug',
         'image',
-        'menu_id',
+        'price',
+        'is_available',
+        'description',
+        'category_id',
     ];
 
     /**
@@ -29,27 +30,17 @@ class Category extends Model
      * @var array<int, string>
      */
     protected $hidden = [
-        'menu_id',
+        'category_id',
     ];
 
 
     /**
-     * Get the menu for the category
+     * Get the category for the a food
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    function menu()
+    function category()
     {
-        return $this->belongsTo(Menu::class);
-    }
-
-    /**
-     * Get the food for the category
-     * 
-     * @return \Illuminate\Database\Eloquent\Relations\hasMany
-     */
-    function food()
-    {
-        return $this->hasMany(Food::class);
+        return $this->belongsTo(Category::class);
     }
 }

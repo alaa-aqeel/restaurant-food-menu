@@ -2,6 +2,8 @@
 
 namespace App\Interfaces;
 
+
+
 interface BaseRepositoryInterface
 {
     /**
@@ -12,6 +14,23 @@ interface BaseRepositoryInterface
      */
     public function setModel($model); 
 
+    /**
+     * Get model 
+     * 
+     * @param string $order='id'
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function getModel($order='id');
+
+
+        /**
+     * Create slug for field and update data
+     * 
+     * @param mixed &$data
+     * @param string $field 
+     * @return void 
+     */
+    public function setSlugField(mixed &$data, string $field="name");
 
     /**
      * Get all records

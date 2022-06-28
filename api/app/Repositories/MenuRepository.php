@@ -19,12 +19,14 @@ class MenuRepository extends BaseRepository  implements MenuRepositoryInterface
 
     public function create(array $data)
     {
+        $this->setSlugField($data, 'title');
         $this->uploadImage($data);
         return parent::create($data);
     }
 
     public function update(int $id, array $data)
     {
+        $this->setSlugField($data, 'title');
         $this->uploadImage($data);
         return parent::update($id, $data);
     }

@@ -4,13 +4,10 @@ namespace App\Repositories;
 
 use App\Interfaces\BaseRepositoryInterface;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class BaseRepository  implements BaseRepositoryInterface
 {
-
-
-
-
 
     /**
      * Default field search for filter  func
@@ -36,6 +33,30 @@ class BaseRepository  implements BaseRepositoryInterface
         $this->model = $model;
     }
 
+    /**
+     * Create slug for field and update data
+     * 
+     * @param mixed &$data
+     * @param string $field 
+     * @return void 
+     */
+    public function setSlugField(mixed &$data, string $field="name")
+    {
+        if (isset($data[$field])){
+            $data['slug'] = Str::slug($data[$field]);
+        }
+    }
+
+    /**
+     * Get model 
+     * 
+     * @param string $order='id'
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function getModel($order='id') 
+    {
+        return $this->model::orderBy($order);
+    }
 
     /**
      * Update fields 
