@@ -34,6 +34,7 @@ class AccountController extends Controller
      */
     public function getAccount()
     {
+        // sleep(5);
         $resource = new AccountResource(auth()->user());
         return $resource;
     }

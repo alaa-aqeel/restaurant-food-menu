@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AccountResource;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -18,7 +19,7 @@ class LoginController extends Controller
      * Login user 
      * 
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return \App\Http\Resources\AccountResource|\Illuminate\Http\RedirectResponse
      */
     public function login(Request $request) 
     {
@@ -30,19 +31,25 @@ class LoginController extends Controller
             
             if ($request->isJson()){
 
-                $token = auth()
-                    ->user()
-                    ->createToken('Auth Token')
-                    ->plainTextToken;
+                $user = auth()->user();
+                $token = $user
+                            ->createToken('Auth Token')
+                            ->plainTextToken;
 
-                return response()->json(['token' => $token], 200);
+
+                $resource = new AccountResource($user);
+                $resource->additional([
+                    'token' => $token
+                ]);
+
+                return $resource;
             }
 
             $request->session()->regenerate();
             return redirect()->intended('dashboard');;
         }
 
-        $errors = ['login_error' => __('messages.login_invalid_data')];
+        $errors = ['message' => __('messages.login_invalid_data')];
 
         if ($request->isJson()){
             
