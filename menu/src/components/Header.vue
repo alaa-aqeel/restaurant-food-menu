@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-back py-6 "> 
+  <div class="bg-back py-6"> 
     <div class="container mx-auto">
         <Navbar />
         <div class="py-5 w-full md:px-0 px-2">

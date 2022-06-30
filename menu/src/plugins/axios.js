@@ -1,7 +1,9 @@
 import axios from "axios"
+import store from "@/store"
+import router from "@/routes"
 
 const instance = axios.create({
-    baseURL: process.env.VITE_APP_BASE_API_URL+'/api/v1/',
+    baseURL: import.meta.env.VITE_APP_BASE_API_URL,
     headers: {
       "Accept": "application/json",
       "Content-Type": "application/json"
@@ -9,6 +11,7 @@ const instance = axios.create({
 });
 
 instance.defaults.headers.common['Authorization'] = "Bearer "+localStorage.getItem("access_token");
+// instance.defaults.withCredentials = true;
 
 instance.interceptors.response.use(
   function (response) {
@@ -18,6 +21,14 @@ instance.interceptors.response.use(
   }, 
   function (error) {
     
+    if (error.response) {
+        // status, data
+        if ( error.response.status == 401 ) {
+          store.commit("auth/logout")
+          router.push({name: "login"})
+        }
+        console.log(error.response)
+    }
     return Promise.reject(error);
   });
 

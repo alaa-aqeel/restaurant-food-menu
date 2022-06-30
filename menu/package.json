@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "dotenv": "^16.0.1",
     "vue": "^3.2.25",
     "vue-router": "^4.0.16",
     "vuex": "^4.0.2"
