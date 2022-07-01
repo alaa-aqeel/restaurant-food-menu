@@ -18,7 +18,11 @@ const setAccessToken = (accessToken)=> {
 export default  (to, from, next) => {
        
     let token = localStorage.getItem('access_token')
-    setAccessToken(token)
+    
+    if (token && !store.state.auth.isLogi) {
+        setAccessToken(token)
+        loadUserProfile(store.state.auth)
+    }
 
     // auth 
     if (to.matched.some(record => record.meta.requireAuth)) {
@@ -27,7 +31,7 @@ export default  (to, from, next) => {
 
         } else {
 
-            loadUserProfile(store.state.auth)
+            // loadUserProfile(store.state.auth)
             next()
         }
     } else if (to.matched.some(record => record.meta.guest)) {

@@ -1,9 +1,7 @@
 <template>
     <div class="px-20 flex items-center">
         <h1 class="font-bold text-3xl drop-shadow text-second">
-            <router-link to="/">
-                Menu
-            </router-link>
+            Menu
         </h1> 
         <div class="flex-1"></div>
         <div class="flex gap-3">
@@ -26,7 +24,7 @@
                         <Icon v-if="store.state.auth.isLoadingProfile"  icon="eos-icons:bubble-loading" class="w-8 h-8 p-1.5 "   />
                         <div v-else class="flex items-center px-2">
                             <span >
-                                {{store.state.auth.user.username}}
+                                {{ store.state.auth.user.username }}
                             </span>
                             <Icon  icon="fa:user" class="w-8 h-8 py-1.5 "   />
                         </div>

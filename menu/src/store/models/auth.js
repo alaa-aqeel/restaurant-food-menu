@@ -18,6 +18,12 @@ const mutations = {
         state.isLogin = true
         state.user = data
     },
+    setUserMenu(state, data) {
+        state.user.menu = data
+    }, 
+    setUser(state, data) {
+        state.user = data
+    },  
     logout(state) {
         state.isLogin = false
         state.user = {}
@@ -40,12 +46,28 @@ const actions = {
     },
     profile({commit, state}) {
         state.isLoadingProfile = true
-        return axios.get('account/profile')
+        return axios.get('account')
             .then( (resp)=>{
-                commit('login', resp.data)
+                commit('login', resp.data.data)
                 return resp
             } )
             .finally( ()=> state.isLoadingProfile = false)
+    },
+    updateMenu({commit}, formData) {
+
+        // const method = state.user.menu ? "put":"post"
+        return axios.post(`menu/update`, formData)
+            .then( (resp)=>{
+                commit('setUserMenu', resp.data.data)
+                return resp
+            })  
+    },
+    updateAccount({commit}, formData) {
+        return axios.put(`account/update`, formData)
+            .then( (resp)=>{
+                commit('setUser', resp.data.data)
+                return resp
+            }) 
     }
 }
 const getters = {}

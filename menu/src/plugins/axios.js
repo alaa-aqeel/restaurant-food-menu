@@ -27,7 +27,6 @@ instance.interceptors.response.use(
           store.commit("auth/logout")
           router.push({name: "login"})
         }
-        console.log(error.response)
     }
     return Promise.reject(error);
   });

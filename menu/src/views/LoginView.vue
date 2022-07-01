@@ -16,7 +16,7 @@
                         <label class="text-sm font-bold px-1" for="email">Username</label>
                         <input name="username" v-model="loginData.username" placeholder="Enter username" id="email" class="border border-gray-300 rounded-lg p-2 w-full mt-1" />
                     </div>
-                    <div class="py-2">
+                    <div class="py-2 relative">
                         <label class="text-sm font-bold px-1" for="email">Password</label>
                         <input v-model="loginData.password" name="password" type="password" placeholder="Enter password" id="email" class="border border-gray-300 rounded-lg p-2 w-full mt-1" />
                     </div>
@@ -26,7 +26,6 @@
                         class="mt-4 w-full py-1.5 text-blue-500 hover:text-white font-bold rounded-lg active:bg-blue-600 hover:bg-blue-500 hover:ring-0 ring-2  ring-blue-600"
                         :class="{'bg-gray-300 text-white ring-0 hover:bg-gray-300 cursor-wait': isLoading}"
                     >
-                        
                         Login
                     </button>
                 </form>
@@ -37,6 +36,7 @@
 
 
 <script setup>
+import { Icon } from '@iconify/vue';
 import { defineAsyncComponent, ref } from 'vue';
 import { useStore } from 'vuex';
 import route from "@/routes";

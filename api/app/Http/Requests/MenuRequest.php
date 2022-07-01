@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class MenuRequest extends FormRequest
 {
@@ -27,7 +28,12 @@ class MenuRequest extends FormRequest
             "title" => "required|string|max:255",
             "address" => "required|string|max:255",
             "work_time" => "required|string|max:255",
-            "image" => "required|image",
+            "image" => [
+                Rule::requiredIf(!auth()->user()->menu),
+                "image",
+                "mimes:jpeg,png,jpg",
+                "max:2048",
+            ],
             "description" => "nullable",
         ];
     }

@@ -32,8 +32,6 @@ Route::middleware('auth:sanctum')
             ->prefix("account")
             ->group(function(){
                 Route::controller(AccountController::class)
-                    ->prefix("profile")
-                    ->name("profile.")
                     ->group(function(){
                         Route::get("", "getAccount");
                         Route::put("update", "updateAccount");
