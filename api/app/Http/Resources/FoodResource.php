@@ -21,8 +21,8 @@ class FoodResource extends JsonResource
             "image" => $this->image,
             "price" => $this->price,
             "description" => $this->description,
-            'is_available' => $this->is_available
-            // "category" => new CategoryResource($this->category),
+            'is_available' => $this->is_available,
+            'category_id' => $this->category_id,
         ];
     }
 }

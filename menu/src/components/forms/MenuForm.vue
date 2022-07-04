@@ -81,7 +81,8 @@ import { useStore } from 'vuex';
 const props = defineProps({
     menu: {
         type: Object,
-        required: true
+        required: true,
+        default: ()=>({})
     }
 })
 

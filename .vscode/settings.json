@@ -1,0 +1,8 @@
+{
+    "docwriter.style": "Auto-detect",
+    "docwriter.hotkey.mac": "⌘ + .",
+    "docwriter.progress.trackFunctions": true,
+    "docwriter.progress.trackClasses": true,
+    "docwriter.progress.trackTypes": true,
+    "docwriter.progress.trackMethods": true
+}

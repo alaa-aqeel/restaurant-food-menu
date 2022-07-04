@@ -4,6 +4,9 @@ import store from "@/store"
 const loadUserProfile = (auth)=> {
     if (!auth.isLogin) {
         return store.dispatch('auth/profile')
+            .then(()=>{
+                store.dispatch("category/all")
+            })
             .catch(()=> store.commit("auth/logout") )
     }
 }

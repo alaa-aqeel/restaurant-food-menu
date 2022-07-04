@@ -22,9 +22,11 @@ class FoodRepository extends BaseRepository  implements FoodRepositoryInterface
     {
         $menu = $this->getMenu();
         return  $this->model::whereHas("category", function ($q) use($menu, $id){
-                            return $q  
-                                ->where("menu_id", $menu->id)
-                                ->where('id', $id);
+                            $q->where("menu_id", $menu->id);
+                            if ($id) {
+                                $q->where("category_id", $id);
+                            }
+                            return $q;   
                         });
     }
 
@@ -60,7 +62,8 @@ class FoodRepository extends BaseRepository  implements FoodRepositoryInterface
         $food = $this->findOrFail($categoryId, $id);
         $this->setSlugField($data, 'name');
         $this->uploadImage($data);
-        return $food->update($data);
+        $food->update($data);
+        return $food;
     }
 
 

@@ -23,18 +23,9 @@ class CategoryRequest extends FormRequest
      */
     public function rules()
     {
-        switch($this->method())
-        {
-            case 'POST':
-                return [
-                    "name" => "required|string|max:255",
-                    "image" => "required|image"
-                ];
-            case "PUT":
-                return [
-                    "name" => "string|max:255",
-                    "image" => "image"
-                ];
-        }
+        return [
+            "name" => "required|string|max:255",
+            // "image" => "required|image"
+        ];
     }
 }

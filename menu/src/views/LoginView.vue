@@ -59,7 +59,7 @@ const submit = ($e) => {
         password: loginData.value.password
     })
     .then(()=>{
-        route.push({name: 'dashboard'})
+        route.push({name: 'dashboard_profile'})
     }).catch(({response})=>{
         if (response) {
             errorMessage.value = response.data.message

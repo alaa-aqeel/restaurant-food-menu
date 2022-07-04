@@ -17,6 +17,7 @@ const mutations = {
     login(state, data) {
         state.isLogin = true
         state.user = data
+        state.user.menu = data.menu ? data.menu : {}
     },
     setUserMenu(state, data) {
         state.user.menu = data
@@ -55,7 +56,6 @@ const actions = {
     },
     updateMenu({commit}, formData) {
 
-        // const method = state.user.menu ? "put":"post"
         return axios.post(`menu/update`, formData)
             .then( (resp)=>{
                 commit('setUserMenu', resp.data.data)

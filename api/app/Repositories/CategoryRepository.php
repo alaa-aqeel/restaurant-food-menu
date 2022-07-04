@@ -60,7 +60,7 @@ class CategoryRepository extends BaseRepository  implements CategoryRepositoryIn
     {
         $data['menu_id'] = $this->getMenu()?->id;
         $this->setSlugField($data, 'name');
-        $this->uploadImage($data);
+        // $this->uploadImage($data);
         return parent::create($data);
     }
 
@@ -74,7 +74,7 @@ class CategoryRepository extends BaseRepository  implements CategoryRepositoryIn
     public function update(int $id, array $data)
     {
         $this->setSlugField($data, 'name');
-        $this->uploadImage($data);
+        // $this->uploadImage($data);
         return parent::update($id, $data);
     }
 

@@ -32,6 +32,8 @@ class CategoryController extends Controller
      */
     public function index()
     {   
+
+        // sleep(5);
         $categories = $this->category->all();
 
         return CategoryResource::collection($categories);
