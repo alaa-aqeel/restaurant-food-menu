@@ -22,6 +22,7 @@ class Food extends Model
         'is_available',
         'description',
         'category_id',
+        'menu_id',
     ];
 
     /**
@@ -31,6 +32,7 @@ class Food extends Model
      */
     protected $hidden = [
         'category_id',
+        'menu_id',
     ];
 
 
@@ -42,5 +44,15 @@ class Food extends Model
     function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * Get the menu for the a food
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    function menu()
+    {
+        return $this->belongsTo(Menu::class);
     }
 }

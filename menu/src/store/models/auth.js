@@ -16,8 +16,8 @@ const mutations = {
     },
     login(state, data) {
         state.isLogin = true
+        data.menu = data.menu ? data.menu : {}
         state.user = data
-        state.user.menu = data.menu ? data.menu : {}
     },
     setUserMenu(state, data) {
         state.user.menu = data

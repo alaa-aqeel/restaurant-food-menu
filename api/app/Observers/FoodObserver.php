@@ -10,8 +10,8 @@ class FoodObserver
 
     private function forgetCache(Food $food) 
     {
-        Cache::forget("food_{$food->category->menu->slug}");
-        Cache::forget("food_{$food->category->menu->slug}{$food->category->id}");
+        Cache::forget("food_{$food->category?->menu?->slug}");
+        Cache::forget("food_{$food->category?->menu?->slug}{$food?->category?->id}");
     }
 
     /**

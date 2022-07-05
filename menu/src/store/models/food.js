@@ -21,28 +21,28 @@ const mutations = {
 
 const actions = {
     all({commit},  {category}) {
-        return axios.get(`menu/category/${category}/food`)
+        return axios.get(`menu/food`)
             .then( (resp)=>{
                 commit('setData', resp.data.data)
                 return resp
             }) 
     },
     create({commit},  {category, data}) {
-        return axios.post(`menu/category/${category}/food`, data)
+        return axios.post(`menu/food`, data)
             .then( (resp)=>{
                 commit('addData', resp.data.data)
                 return resp
             }) 
     },
     update({commit}, {category, id, data}) {
-        return axios.post(`menu/category/${category}/food/${id}?_method=put`, data)
+        return axios.post(`menu/food/${id}?_method=put`, data)
             .then( (resp)=>{
                 commit('updateData', resp.data.data)
                 return resp
             }) 
     },
     delete({commit},  {category, id}) {
-        return axios.delete(`menu/category/${category}/food/${id}`)
+        return axios.delete(`menu/food/${id}`)
             .then( (resp)=>{
                 commit('removeData', id)
                 return resp

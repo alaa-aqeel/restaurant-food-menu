@@ -10,7 +10,6 @@ class CategoryObserver
 
     private function forgetCache(Category $category) 
     {
-        // echo "categories_{$category->menu->slug}";
         Cache::forget("categories_{$category->menu->slug}");
     }
 

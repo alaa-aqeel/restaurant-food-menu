@@ -2,11 +2,20 @@
     <div class="py-4">
         <Navbar />
         <div class="container mx-auto py-12" dir="rtl">
+            <div v-if="user.menu && user.menu.title_slug">
+                <router-link
+                    :to="{name: 'home', params: { slug: user.menu.title_slug} }"
+                    class="px-4 py-2 text-gray-800 hover:text-gray-900 rounded-lg bg-gray-100 hover:ring-2 hover:ring-gray-200 "
+                >
+                    <!-- <Icon icon="fa:home" /> -->
+                    <span>عرض قائمة الطعام</span>
+                </router-link>
+            </div>
             <template v-if="isLogin">
                 <div >
                     <div class="mb-4 border-b border-gray-200 ">
-                        <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" >
-                            <li>
+                        <ul class="flex flex-wrap -mb-px text-sm font-medium text-center " >
+                            <li class="min-w-xs">
                                 <router-link 
                                     :to="{name: 'dashboard_profile'}"
                                     active-class="text-blue-500 border-blue-500" 
@@ -37,7 +46,7 @@
                                 <router-link  
                                     :to="{name: 'dashboard_food'}"
                                     active-class="text-yellow-700 border-yellow-700" 
-                                    class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-yellow-600 hover:border-yellow-600 " 
+                                    class="inline-block p-4 rounded-t-lg border-b-2  hover:text-yellow-600 hover:border-yellow-600 " 
                                 >
                                     المأكولات
                                 </router-link>

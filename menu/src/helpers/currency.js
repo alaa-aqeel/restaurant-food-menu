@@ -6,7 +6,7 @@ export function format(price) {
         style: 'currency',
         currency: 'IQD',
         currencyDisplay: 'symbol',
-        maximumSignificantDigits: 1
+        maximumSignificantDigits: 20
     })
 }
 

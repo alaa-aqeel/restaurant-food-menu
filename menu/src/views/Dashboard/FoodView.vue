@@ -4,7 +4,7 @@
             <FoodForm :food="currentFood" />
         </Dialog>
         
-        <div class="w-full px-12 py-4">
+        <div class="w-full py-4">
             <div class="">
                 <button
                     @click="showForm = true" 

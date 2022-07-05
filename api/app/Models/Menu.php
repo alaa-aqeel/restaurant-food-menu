@@ -53,4 +53,14 @@ class Menu extends Model
     {
         return $this->hasMany(Category::class);
     }
+
+    /**
+     * Get the food for the menu
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
+     */
+    function food()
+    {
+        return $this->hasMany(Food::class);
+    }
 }

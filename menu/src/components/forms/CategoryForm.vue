@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="submit" class="flex gap-2 items-end">
+    <form @submit.prevent="submit" class="md:flex grid grid-cols-1 gap-2 items-end">
         
         <div class="w-full">
             <label class="text-sm font-bold px-1" for="email">
@@ -51,7 +51,7 @@ const submit = ($e)=> {
         }).catch(err=>{
             if (err.response.data) {
                 alert(err.response.data.message)
-                errors.value = err.response.data.errors
+                // errors.value = err.response.data.errors
             }   
         }).finally(()=> isLoading.value = false)
 }

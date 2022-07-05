@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CategoryRequest extends FormRequest
 {
@@ -24,8 +25,17 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            "name" => "required|string|max:255",
-            // "image" => "required|image"
+            "name" => [
+                "required",
+                Rule::unique('categories', 'name')->where(fn ($q) => $q->where('menu_id', auth()->user()->menu->id)),
+            ],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.unique' => __(' الاسم مكرر يرجا اختيار اسم اخر '),
         ];
     }
 }

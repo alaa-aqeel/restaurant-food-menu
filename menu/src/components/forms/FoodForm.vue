@@ -3,11 +3,11 @@
         @submit.prevent="submit" 
         class="grid grid-cols-1 items-start h-full w-full"
     >
-        <div class="flex items-center justify-center py-10">
+        <div class="flex flex-col items-center justify-center">
             <img 
                 ref="image"
                 @click="$refs.fileInput.click()"
-                :src="`http://127.0.0.1${food.image}`" 
+                :src="`${baseURL}${food.image}`" 
                 class="rounded-full object-cover bg-gray-500 hover:bg-gray-700 object-center lg:w-36 lg:h-36 w-24 h-24 hover:cursor-pointer hover:p-2" 
             />
             <input 
@@ -46,6 +46,7 @@
                 </label>
                 <select 
                     id="category"
+                    name="category_id"
                     v-model="food.category_id"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                     <option selected>----</option>
@@ -116,7 +117,7 @@ const props = defineProps({
 })
 
 const store = useStore();
-const baseURL = import.meta.env.VITE_APP_BASE_API_URL
+const baseURL = import.meta.env.VITE_API_DOWEN
 const image = ref(null)
 const errors = ref({})
 const isLoading = ref(false)

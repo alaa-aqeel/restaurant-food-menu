@@ -1,8 +1,10 @@
 <template>
-    <div v-if="user.menu">
-        <MenuForm :menu="user.menu"  />
-        <!-- <router-view></router-view> -->
+    <div>
+        <div v-if="user.menu">
+            <MenuForm :menu="user.menu"  />
+        </div>
     </div>
+
 </template>
 
 <script setup>

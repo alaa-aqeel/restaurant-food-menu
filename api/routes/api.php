@@ -52,7 +52,7 @@ Route::middleware('auth:sanctum')
                 Route::middleware("user.check_menu")
                     ->group(function(){
                         Route::apiResource("/category", CategoryController::class);
-                        Route::apiResource("category.food", FoodController::class);
+                        Route::apiResource("/food", FoodController::class);
                     });
             });   
     });

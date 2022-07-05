@@ -31,11 +31,11 @@ class FoodController extends Controller
      *
      * @return FoodResource
      */
-    public function index($category)
+    public function index(Request $request)
     {   
-        $categories = $this->food->getAll($category);
+        $food = $this->food->getAll();
 
-        return FoodResource::collection($categories);
+        return FoodResource::collection($food);
     }
 
     /**
@@ -44,10 +44,9 @@ class FoodController extends Controller
      * @param  FoodRequest  $request
      * @return FoodResource
      */
-    public function store($category, FoodRequest $request)
+    public function store(FoodRequest $request)
     {
         $validatedData = $request->validated();
-        $validatedData['category_id'] = $category;
 
         $food = $this->food->create($validatedData);
         $resource = new FoodResource($food);
@@ -65,11 +64,11 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($category, FoodRequest $request, $id)
+    public function update(FoodRequest $request, $id)
     {
         $validatedData = $request->validated();
 
-        $food = $this->food->updateFood($category, $id, $validatedData);
+        $food = $this->food->updateFood($id, $validatedData);
         $resource = new FoodResource($food);
         $resource->additional([
             'message' => __('messages.updated'),
@@ -84,9 +83,9 @@ class FoodController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($category, $id)
+    public function destroy($id)
     {
-        $this->food->deleteFood($category, $id);
+        $this->food->deleteFood($id);
 
         return response()->json([
             'message' => __('messages.deleted'),

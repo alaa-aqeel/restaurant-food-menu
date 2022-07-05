@@ -18,13 +18,9 @@ class FoodRepository extends BaseRepository  implements FoodRepositoryInterface
         return auth()->user()->menu;
     }
 
-    private function filterByCategory($id)
+    private function filterByMenu()
     {
-        $menu = $this->getMenu();
-        return  $this->filter([
-            'category' => $id,
-            'menu' => $menu->id,
-        ]);
+        return $this->filter(['menu' => $this->getMenu()->id ]);
     }
 
     /**
@@ -38,26 +34,28 @@ class FoodRepository extends BaseRepository  implements FoodRepositoryInterface
     public function filter(array $args, int $limit=8, $sort="id")
     {
         $filter = $this->model::orderBy($sort, "desc");
+        
 
-        if (isset($args["category"]) && isset($args["menu"])) {
-            $filter->whereHas("category", function($query) use($args) {
-                $query->where("menu_id", $args["menu"]);
-                
-                if( $args["category"] ) {
-                    $query->where("category_id", $args["category"] );
-                }
-                
-                return $query;
-            });
+        if (isset($args['category']) && $args['category']) {
+            $filter = $filter->where('category_id', $args['category']);
+        }
+
+        if (isset($args['menu'])) {
+            $filter = $filter->where('menu_id', $args['menu']);
+        }
+
+        if (isset($args['is_available'])) {
+            
+            $filter = $filter->where('is_available', $args['is_available']);
         }
 
         return $filter; 
     }
 
-    public function findOrFail(int|null $categoryId, int|null $id)
+    public function findOrFail(int|null $id)
     {
 
-        $food = $this->filterByCategory($categoryId)
+        $food = $this->filterByMenu()
                     ->where('id', $id)
                     ->first();
         if ( $food ) {
@@ -69,30 +67,33 @@ class FoodRepository extends BaseRepository  implements FoodRepositoryInterface
         ], 404));
     }
 
-    public function getAll(int|null $categoryId)
+    public function getAll()
     {
-        return $this->filterByCategory($categoryId)->get();
+        return $this->filterByMenu()->get();
     }
 
     public function create(array $data)
     {
+        $data['menu_id'] = $this->getMenu()->id;
         $this->uploadImage($data);
         $this->setSlugField($data, 'name');
+        $data['is_available'] = isset($data['is_available']) ? 1 : 0;
         return parent::create($data);
     }
 
-    public function updateFood(int|null $categoryId, int $id, array $data)
+    public function updateFood(int $id, array $data)
     {
-        $food = $this->findOrFail($categoryId, $id);
+        $food = $this->findOrFail($id);
         $this->setSlugField($data, 'name');
         $this->uploadImage($data);
+        $data['is_available'] = isset($data['is_available']) ? 1 : 0;
         $food->update($data);
         return $food;
     }
 
 
-    public function deleteFood(int|null $categoryId, int $id)
+    public function deleteFood(int $id)
     {
-        $this->findOrFail($categoryId, $id)->delete();
+        $this->findOrFail($id)->delete();
     }
 }

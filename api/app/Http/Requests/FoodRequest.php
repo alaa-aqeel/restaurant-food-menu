@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class FoodRequest extends FormRequest
 {
@@ -29,18 +30,37 @@ class FoodRequest extends FormRequest
                 return [
                     'name' => 'required|string|max:255',
                     'image' => 'required|image',
-                    'price' => 'required|integer|min:0',
-                    'is_available' => 'required|integer',
-                    'description' => 'required|string|max:255',
+                    'price' => 'required|integer|min:1',
+                    'is_available' => 'integer',
+                    'description' => 'nullable|max:255',
+                    'category_id' => [
+                        "required",
+                        "integer",
+                        'exists:categories,id',
+                    ],
                 ];
             case 'PUT':
                 return [
-                    'name' => 'string|max:255',
+                    'name' => 'required|string|max:255',
                     'image' => 'image|max:255',
-                    'price' => 'required|integer|min:0',
+                    'price' => 'required|integer|min:1',
                     'is_available' => 'integer',
-                    'description' => 'string|max:255',
+                    'description' => 'nullable|max:255',
+                    'category_id' => [
+                        'required',
+                        "integer",
+                        'exists:categories,id',
+                    ],
                 ];
         }
+    }
+
+    public function messages()
+    {
+        return [
+            'name.integer' => __('  يرجا ادخال السعر بشكل صحيح مع استخدام الاحرف الانكليزية'),
+            'category_id.required' => __('يرجا اختيار التصنيف'),
+            'category_id.integer' => __('يرجا اختيار التصنيف'),
+        ];
     }
 }

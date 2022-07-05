@@ -7,6 +7,7 @@ use App\Http\Resources\CategoryResource;
 use App\Http\Resources\FoodResource;
 use App\Http\Resources\MenuResource;
 use App\Interfaces\FoodRepositoryInterface;
+use App\Models\Category;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -43,19 +44,20 @@ class RestaurantController extends Controller
         }
 
         
-        $categoyId = $request->get("category", '');
+        $categoyId = $request->get("category");
 
-        // Cache::forget("menu_{$slug}");
-        $menu = Cache::rememberForever("menu_{$slug}", fn()=> Menu::where("slug", $slug)->first());
-
+        $menu = Cache::rememberForever("menu_{$slug}", fn()=> Menu::with(['categories'])->where("slug", $slug)->first());
+        
+        // Cache::forget("categories_{$slug}");  
         $categories = Cache::rememberForever("categories_{$slug}", fn()=> $menu->categories()->get());
 
-        $food = Cache::rememberForever("food_{$slug}{$categoyId}", function() use($categoyId,  $menu){
-            return $this->food->filter([
-                'category' => $categoyId,
-                'menu' => $menu->id,
-            ])->get();
-        });
+        
+        $food = Cache::rememberForever("food_{$slug}{$categoyId}", 
+                        fn ()=> $this->food->filter([
+                            'menu' => $menu->id, 
+                            'category' => $categoyId,
+                            "is_available" => 1
+                        ])->get());
         
         $resource = FoodResource::collection($food);
         $resource->additional([

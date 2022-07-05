@@ -3,7 +3,7 @@
         <div class="relative">
             <img 
                 ref="image"
-                :src="`http://127.0.0.1${menu.image}`" 
+                :src="`${baseURL}${menu.image}`" 
                 class="rounded-xl object-cover bg-gray-400 object-center w-full h-[364px] shadow-lg shadow-gray-400" 
             />
             <div 
@@ -87,7 +87,7 @@ const props = defineProps({
 })
 
 const store = useStore();
-const baseURL = import.meta.env.VITE_APP_BASE_API_URL
+const baseURL = import.meta.env.VITE_API_DOWEN
 const image = ref(null)
 const errors = ref({})
 const isLoading = ref(false)
