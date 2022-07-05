@@ -4,7 +4,12 @@
         <Navbar />
         <div class="py-5 w-full md:px-0 px-2">
             <img 
-                src="./../assets/1-07720.jpg" 
+                v-if="image"
+                v-lazy="{
+                    src:image,
+                    loading: 'https://i.picsum.photos/id/200/200/300.jpg?blur=10&grayscale&hmac=TBuA0MmYHfKvEvCRGYQ_b7zlDe-DQ0lgxfUOU_HMgO4', 
+                    error: 'https://i.picsum.photos/id/200/200/300.jpg?blur=10&grayscale&hmac=TBuA0MmYHfKvEvCRGYQ_b7zlDe-DQ0lgxfUOU_HMgO4', 
+                }" 
                 class="rounded-xl object-cover object-center w-full max-h-[564px] shadow-lg shadow-gray-400"
             >
         </div>
@@ -12,7 +17,7 @@
             <h1 class="text-primary lg:text-6xl text-3xl font-semibold drop-shadow-xl">
                 {{ title }}
             </h1>
-            <div class="flex md:flex-row flex-col md:gap-20 gap-2 items-end justify-center md:p-10 px-6 py-8">
+            <div class="flex md:flex-row flex-col md:gap-20 gap-2 md:items-end items-center  justify-center md:p-10 px-6 py-8">
                 <a class="flex items-center gap-2">
                     <span class="text-second text-lg">
                         {{ work_time }}
@@ -45,18 +50,18 @@ const Navbar = defineAsyncComponent(()=> import('@/components/Navbar.vue'))
 defineProps({
     title: {
         type: String,
-        default: 'Etana For Fast Food'
+        default: '...'
     },
     image: {
         type: String
     },
     address: {
         type: String,
-        default: 'العراق واسط الكوت حي الزهراء قرب تقاطع هكوري'
+        default: '....'
     },
     work_time: {
         type: String,
-        default: 'من الساعه 12 ظهرا لغاية ال12 ليلا'
+        default: '....'
     }
 })
 

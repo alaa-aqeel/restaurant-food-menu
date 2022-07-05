@@ -4,6 +4,7 @@ use App\Http\Controllers\API\v1\AccountController;
 use App\Http\Controllers\API\v1\CategoryController;
 use App\Http\Controllers\API\v1\FoodController;
 use App\Http\Controllers\API\v1\MenuController;
+use App\Http\Controllers\API\v1\RestaurantController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,9 +20,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-// Route::group(function(){
-Route::post("login", [LoginController::class, "login"]);
-
+Route::name("public.")->group(function(){
+    Route::post("login", [LoginController::class, "login"])->name('login');
+    Route::get("restaurant/{slug}", [RestaurantController::class, "index"])->name("restaurant.index");
+});
 
 Route::middleware('auth:sanctum')
     ->name("app.")
@@ -30,7 +32,8 @@ Route::middleware('auth:sanctum')
         Route::controller(AccountController::class)
             ->name("account.")
             ->prefix("account")
-            ->group(function(){
+            ->group(/*  */
+            function(){
                 Route::controller(AccountController::class)
                     ->group(function(){
                         Route::get("", "getAccount");

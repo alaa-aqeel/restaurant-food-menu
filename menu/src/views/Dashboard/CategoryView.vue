@@ -1,14 +1,13 @@
 <template>
     <div class="container mx-auto">
         <div  v-if="!isLoading" >
-            <CategoryForm :category="category" />
+            <CategoryForm />
             <ul 
                 
                 class="flex flex-wrap gap-2 py-4"
             >   
                 <li v-if="!categories.length" class="w-full select-none py-10 font-bold text-gray-400 text-center">
-
-                    NOT DATA 
+                    لاتوجد بيانات  
                 </li>
 
                 <li 
@@ -34,9 +33,14 @@ import { useStore } from 'vuex';
 const CategoryForm = defineAsyncComponent(()=> import('@/components/forms/CategoryForm.vue'))
 const Loading = defineAsyncComponent(()=> import('@/components/Loading.vue'))
 
+const props = defineProps({
+    user: {
+        type: Object,
+        required: true,
+    },
+})
 
 const store = useStore()
-const category = ref({})
 
 
 const deleteCategory = (data) => {
@@ -44,16 +48,18 @@ const deleteCategory = (data) => {
     && store.dispatch("category/delete", data)        
 }
 
-// onMounted(()=> getCategories())
 const categories = computed(()=> store.state.category.data)
 const isLoading = computed(()=> store.state.category.isLoadingData)
 
-defineProps({
-    user: {
-        type: Object,
-        required: true,
-    },
-})
+
+const getCategories = ()=> {
+    if (!categories.value.length) {
+        store.dispatch("category/all")
+    }
+    // console.log(categories)
+}
+onMounted(()=> getCategories())
+
 </script>
 
 <style>

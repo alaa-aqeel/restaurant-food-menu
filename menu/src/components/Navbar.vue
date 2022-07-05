@@ -1,5 +1,5 @@
 <template>
-    <div class="px-20 flex items-center">
+    <div class="md:px-16 px-2 flex items-center">
         <h1 class="font-bold text-3xl drop-shadow text-second">
             Menu
         </h1> 

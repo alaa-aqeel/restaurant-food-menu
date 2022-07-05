@@ -4,7 +4,7 @@ import beforEach from "@/helpers/beforEach";
 
 const routes = [
     { 
-        path: "", 
+        path: "/:slug", 
         name: "home",
         component: () => import("@/views/HomeView.vue") 
     },
@@ -66,6 +66,7 @@ const routes = [
             }
         ]
     },
+    { path: '/notfound', name: "notfound", component: ()=>import("@/views/errors/404View.vue"),  },
     { path: '/:pathMatch(.*)*', component: ()=>import("@/views/errors/404View.vue"),  },
 ];
 

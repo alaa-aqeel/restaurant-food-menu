@@ -18,7 +18,7 @@
                 class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-4 gap-2 py-6">
                 <div v-if="!food.length" 
                     class="w-full select-none py-10 font-bold text-gray-400 text-center"
-                >NOT DATA</div>
+                >لاتوجد بيانات </div>
                 <div v-for="f in food" :key="f.id">
                     <Card 
                         :image="`${baseURL}${f.image}`"

@@ -21,13 +21,37 @@ class FoodRepository extends BaseRepository  implements FoodRepositoryInterface
     private function filterByCategory($id)
     {
         $menu = $this->getMenu();
-        return  $this->model::whereHas("category", function ($q) use($menu, $id){
-                            $q->where("menu_id", $menu->id);
-                            if ($id) {
-                                $q->where("category_id", $id);
-                            }
-                            return $q;   
-                        });
+        return  $this->filter([
+            'category' => $id,
+            'menu' => $menu->id,
+        ]);
+    }
+
+    /**
+     * filter records
+     * 
+     * @param array $args
+     * @param int $limit = 8
+     * @param string $sort = id 
+     * @return Food 
+     */
+    public function filter(array $args, int $limit=8, $sort="id")
+    {
+        $filter = $this->model::orderBy($sort, "desc");
+
+        if (isset($args["category"]) && isset($args["menu"])) {
+            $filter->whereHas("category", function($query) use($args) {
+                $query->where("menu_id", $args["menu"]);
+                
+                if( $args["category"] ) {
+                    $query->where("category_id", $args["category"] );
+                }
+                
+                return $query;
+            });
+        }
+
+        return $filter; 
     }
 
     public function findOrFail(int|null $categoryId, int|null $id)

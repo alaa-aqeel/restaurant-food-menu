@@ -12,6 +12,7 @@
     "dotenv": "^16.0.1",
     "vue": "^3.2.25",
     "vue-router": "^4.0.16",
+    "vue3-lazyload": "^0.3.5",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
