@@ -15,11 +15,11 @@ return [
     |
     */
 
-    'paths' => ['api/v1/*','sanctum/csrf-cookie'],
+    'paths' => ['api/v1/*', 'v1/*','sanctum/csrf-cookie'],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ["http://127.0.0.1:3000",'http://localhost:3000', 'http://192.168.0.108:3000'],
+    'allowed_origins' => ['http://menu.etana-iq.com',"http://127.0.0.1:3000",'http://localhost:3000', 'http://192.168.0.108:3000'],
 
     'allowed_origins_patterns' => ["*"],
 
