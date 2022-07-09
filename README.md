@@ -2,8 +2,8 @@
 
 - [X] API 
 - [X] Admin Panel
-- [] Admin For Restaurant
-- [] Display Restaurant Menu
+- [X] Admin For Restaurant
+- [X] Display Restaurant Menu
 
 
 
