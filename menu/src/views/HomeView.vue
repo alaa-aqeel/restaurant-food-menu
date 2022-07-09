@@ -54,16 +54,21 @@ const isLoading = ref(false)
 
 const getAll =  (category) => {
     isLoading.value = true 
-    store.dispatch("restaurant/all", {slug: route.params.slug, category})
+    return store.dispatch("restaurant/all", {slug: route.params.slug, category})
         .then(()=> {
             isLoading.value = false
+
+            document.getElementsByTagName('title')
+                    .item(0).innerText = store.state.restaurant.menu.title
         })
         .catch( ()=> {
             router.push({name: 'notfound'})
         })
 }
 
-onMounted(()=> getAll(''))
+onMounted(()=> {
+    getAll('')
+})
 
 const baseURL = import.meta.env.VITE_API_DOWEN
 const menu = computed(()=> store.getters["restaurant/menu"])
