@@ -8,6 +8,7 @@
             <input 
                 name="name"  
                 placeholder="اسم " 
+                autocomplete="off"
                 class="border border-gray-300 rounded-lg p-2 w-full mt-1" 
             />
             <span 

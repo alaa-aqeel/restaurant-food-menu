@@ -1,19 +1,24 @@
 <template>
-  <div dir="rtl" class="relative flex flex-col gap-5 bg-back lg:py-6 p-2  border-2  hover:shadow-xl border-opacity-50 border-primary md:rounded-2xl rounded-lg ">
+  <div dir="rtl" class="relative md:flex md:flex-col gap-5 bg-back lg:py-6 p-2  border-2 hover:shadow-xl border-opacity-50 border-primary md:rounded-2xl rounded-lg ">
 
-        <div class="flex items-center justify-start  lg:flex-col flex-row gap-6 w-full">
-            <img 
-                :src="image" 
-                class="lg:rounded-full rounded-lg lg:w-36 lg:h-36 w-24 h-24 object-cover object-center shadow-lg shadow-gray-400"
-            >
-            <div class="lg:text-center">
-                <h1 class="text-xl text-primary font-medium drop-shadow-lg ">
-                    {{ name }}
-                </h1>
-                <h2 class="font-extrabold text-second mt-2">
-                    {{ priceFormat }}
-                </h2>
+        <div>
+            <div class="flex  lg:items-center lg:justify-center lg:flex-col gap-6 min-w-fit s">
+                <img 
+                    :src="image" 
+                    class="lg:rounded-full rounded-lg lg:w-36 lg:h-36 w-24 h-24 object-cover object-center shadow-lg shadow-gray-400"
+                >
+                <div class=" lg:text-center">
+                    <h1 class="md:text-xl break-words text-lg text-primary font-medium drop-shadow-lg ">
+                        {{ name }}
+                    </h1>
+                    <h1 class="font-extrabold text-second mt-2">
+                        {{ priceFormat }}
+                    </h1>
+                </div>
             </div>
+            <p v-if="description!=null" class="text-gray-400 font-light text-sm hover:break-words overflow-hidden text-clip p-2">
+                {{ description }}
+            </p>
         </div>
 
         <div 
@@ -33,7 +38,7 @@
                 <Icon icon="fa:trash" />
             </button>
         </div>
-
+        
         <div 
             v-if="loading == id"
             class="absolute z-50 top-0 left-0 w-full flex items-center justify-center bg-gray-900 bg-opacity-50 h-full md:rounded-2xl rounded-lg "
@@ -56,6 +61,10 @@ const props = defineProps({
         type: String,
         default: 'barger'
     },
+    description: {
+        type: String,
+        default: ''
+    },  
     name: {
         type: String,
         default: 'barger'

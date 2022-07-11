@@ -19,7 +19,12 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['https://menu.etana-iq.com', 'http://menu.etana-iq.com',"http://127.0.0.1:3000",'http://localhost:3000', 'http://192.168.0.108:3000'],
+    'allowed_origins' => [
+        'https://menu.etana-iq.com', 
+        'http://menu.etana-iq.com', 
+        'http://localhost:3000', 
+        'http://192.168.0.107:3000'
+    ],
 
     'allowed_origins_patterns' => ["*"],
 

@@ -7,15 +7,14 @@
                     :to="{name: 'home', params: { slug: user.menu.title_slug} }"
                     class="px-4 py-2 text-gray-800 hover:text-gray-900 rounded-lg bg-gray-100 hover:ring-2 hover:ring-gray-200 "
                 >
-                    <!-- <Icon icon="fa:home" /> -->
                     <span>عرض قائمة الطعام</span>
                 </router-link>
             </div>
             <template v-if="isLogin">
                 <div >
                     <div class="mb-4 border-b border-gray-200 ">
-                        <ul class="flex flex-wrap -mb-px text-sm font-medium text-center " >
-                            <li class="min-w-xs">
+                        <ul class="overflow-y-scroll md:py-0 md:px-0 py-5 px-2 flex text-sm font-medium text-center " >
+                            <li class="min-w-fit">
                                 <router-link 
                                     :to="{name: 'dashboard_profile'}"
                                     active-class="text-blue-500 border-blue-500" 
@@ -24,7 +23,7 @@
                                     الملف الشخصي
                                 </router-link>
                             </li>
-                            <li>
+                            <li class="min-w-fit">
                                 <router-link 
                                     :to="{name: 'dashboard_menu'}"  
                                     active-class="text-indigo-600 border-indigo-600" 
@@ -33,7 +32,16 @@
                                     معلومات المطعم
                                 </router-link>
                             </li>
-                            <li>
+                            <li class="min-w-fit">
+                                <router-link  
+                                    :to="{name: 'dashboard_qr'}"
+                                    active-class="text-gray-900 border-b-2 border-gray-700" 
+                                    class="inline-block p-4 rounded-t-lg hover:border-b-2  hover:text-gray-900 hover:border-gray-600 " 
+                                >
+                                    QR Code
+                                </router-link>
+                            </li>
+                            <li class="min-w-fit">
                                 <router-link 
                                     :to="{name: 'dashboard_category'}"
                                     active-class="text-orange-700 border-orange-700" 
@@ -42,11 +50,11 @@
                                     التنصيفات
                                 </router-link>
                             </li>
-                            <li>
+                            <li class="min-w-fit">
                                 <router-link  
                                     :to="{name: 'dashboard_food'}"
-                                    active-class="text-yellow-700 border-yellow-700" 
-                                    class="inline-block p-4 rounded-t-lg border-b-2  hover:text-yellow-600 hover:border-yellow-600 " 
+                                    active-class="text-yellow-700 border-b-2 border-yellow-700" 
+                                    class="inline-block p-4 rounded-t-lg hover:border-b-2  hover:text-yellow-600 hover:border-yellow-600 " 
                                 >
                                     المأكولات
                                 </router-link>

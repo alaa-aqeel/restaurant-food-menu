@@ -4,11 +4,11 @@
             <img 
                 ref="image"
                 :src="`${baseURL}${menu.image}`" 
-                class="rounded-xl object-cover bg-gray-400 object-center w-full h-[364px] shadow-lg shadow-gray-400" 
+                class="rounded-xl object-cover bg-gray-400 object-center w-full h-[200px] md:h-[364px] shadow-lg shadow-gray-400" 
             />
             <div 
                 @click="$refs.fileInput.click()"
-                class="absolute top-0 left-0 h-[364px] rounded-xl active:bg-opacity-40  hover:bg-opacity-50 w-full hover:bg-gray-900 z-50"
+                class="absolute top-0 left-0 h-[200px] md:h-[364px] rounded-xl active:bg-opacity-40  hover:bg-opacity-50 w-full hover:bg-gray-900 z-50"
             ></div>
             <input 
                 accept="image/png, image/jpeg"
