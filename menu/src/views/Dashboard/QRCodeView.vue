@@ -106,7 +106,7 @@ const downloadQRCode = () =>{
 }
 
 onMounted(()=> {
-    let url = `https://192.168.0.107:300/${props.user.menu.title_slug}`
+    let url = `${import.meta.env.VITE_DOWEN}/${props.user.menu.title_slug}`
     qrCode.update({data: url})
     qrCode.append(canvas.value)
 })
