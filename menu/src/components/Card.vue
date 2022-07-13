@@ -53,7 +53,6 @@ import { defineProps, defineEmits, computed } from 'vue';
 import { Icon } from '@iconify/vue';
 import * as currency  from "@/helpers/currency"
 
-
 defineEmits(["edit", "delete"])
 const props = defineProps({
     id: Number,
@@ -77,14 +76,19 @@ const props = defineProps({
         type: Boolean,
         default: false
     },
+    isAvailable:{
+        type: Boolean,
+        default: true
+    },
     loading: Boolean,
 })
-
 
 const priceFormat = computed(()=> {
 
     return currency.format(props.price);
 })
+
+
 
 </script>
 

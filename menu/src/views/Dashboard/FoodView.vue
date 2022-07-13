@@ -5,11 +5,18 @@
         </Dialog>
         
         <div class="w-full py-4">
-            <div class="">
+            <div class="flex gap-2">
                 <button
                     @click="showForm = true" 
                     class="text-yellow-800 border border-yellow-700 hover:bg-yellow-700 hover:text-white rounded-lg py-1.5 px-3">
                     إضافة أكل
+                </button>
+                <button
+                    :disabled="isLoading"
+                    @click="getFood" 
+                    :class="{'cursor-wait': isLoading}"
+                    class="text-blue-800 border border-blue-700 hover:bg-blue-700 hover:text-white rounded-lg py-1.5 px-3">
+                    <Icon icon="fa:refresh" />
                 </button>
             </div>
 
@@ -30,6 +37,7 @@
                         @delete="deleteFood"
                         @edit="editFood(f)"
                         :loading="loadingDeleteFood"
+                        :isAvailable="f.is_Available"
                     />
                 </div>
             </div>
@@ -41,6 +49,7 @@
 
 
 <script setup>
+import {Icon} from "@iconify/vue"
 import { defineProps, defineAsyncComponent, ref, onMounted, computed } from 'vue';
 import { useStore } from 'vuex';
 
