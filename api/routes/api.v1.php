@@ -20,41 +20,47 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::name("public.")->group(function(){
-    Route::post("login", [LoginController::class, "login"])->name('login');
-    Route::get("restaurant/{slug}", [RestaurantController::class, "index"])->name("restaurant.index");
-});
+Route::name("public.")
+    ->group(function(){
+        Route::post("login", [LoginController::class, "login"])
+                ->name('login');
+        Route::get("restaurant/{slug}", [RestaurantController::class, "index"])
+                ->name("restaurant.index");
+    });
 
-Route::middleware('auth:sanctum')
+Route::middleware(['auth:sanctum', 'user.expire'])
     ->name("app.")
     ->group(function(){
 
-        Route::controller(AccountController::class)
-            ->name("account.")
-            ->prefix("account")
-            ->group(/*  */
-            function(){
-                Route::controller(AccountController::class)
-                    ->group(function(){
-                        Route::get("", "getAccount");
-                        Route::put("update", "updateAccount");
-                    });
-            });
+        # { Account 
+            Route::controller(AccountController::class)
+                ->name("account.")
+                ->prefix("account")
+                ->group(/*  */
+                function(){
+                    Route::controller(AccountController::class)
+                        ->group(function(){
+                            Route::get("", "getAccount");
+                            Route::put("update", "updateAccount");
+                        });
+                });
+        # }
 
-        Route::controller(MenuController::class)
-            ->prefix("menu")
-            ->name("menu.")
-            ->group(function(){
-                Route::get("", "getMenu")->name("get");
-                Route::post("update", "updateMenu")->name("update");
-                
+        # { Menu
+            Route::controller(MenuController::class)
+                ->prefix("menu")
+                ->name("menu.")
+                ->group(function(){
+                    Route::get("", "getMenu")->name("get");
+                    Route::post("update", "updateMenu")->name("update");
+                    
 
-                Route::middleware("user.check_menu")
-                    ->group(function(){
-                        Route::apiResource("/category", CategoryController::class);
-                        Route::apiResource("/food", FoodController::class);
-                    });
-            });   
+                    Route::middleware("user.check_menu")
+                        ->group(function(){
+                            Route::apiResource("/category", CategoryController::class);
+                            Route::apiResource("/food", FoodController::class);
+                        });
+                }); 
+        # }  
     });
-    // });
 

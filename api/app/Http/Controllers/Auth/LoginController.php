@@ -15,6 +15,15 @@ class LoginController extends Controller
         return $request->only(['username', 'password']);
     }
 
+    private function AccountIsExpire($user)
+    {
+        if ( $user->expire_at < now() ) {
+            abort(response()->json([
+                'message' => __('messages.account_expire'),
+            ], 401));
+        }
+    }
+    
     /**
      * Login user 
      * 
@@ -32,11 +41,12 @@ class LoginController extends Controller
             if ($request->isJson()){
 
                 $user = auth()->user();
+                $this->AccountIsExpire($user);
                 $token = $user
                             ->createToken('Auth Token')
                             ->plainTextToken;
 
-
+                
                 $resource = new AccountResource($user);
                 $resource->additional([
                     'token' => $token

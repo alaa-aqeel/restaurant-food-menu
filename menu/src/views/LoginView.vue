@@ -63,7 +63,9 @@ const submit = ($e) => {
     .then(()=>{
         route.push({name: 'dashboard_profile'})
     }).catch(({response})=>{
-        errorMessage.value = " البيانات غير صحيحة"
+        if (response) {
+            errorMessage.value = response.data ? response.data.message : 'حدث خطأ ما'
+        }
     }).finally(()=> isLoading.value = false)
 }
 

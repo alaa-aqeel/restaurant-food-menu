@@ -36,6 +36,15 @@ class User extends Authenticatable
         'expire_at',
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'expire_at' => 'date',
+    ];
+
  
     /**
      * Get the menu for the user 
@@ -45,5 +54,10 @@ class User extends Authenticatable
     function menu()
     {
         return $this->hasOne(Menu::class);
+    }
+
+    public function isExpired()
+    {
+        return $this->expire_at <= now();
     }
 }

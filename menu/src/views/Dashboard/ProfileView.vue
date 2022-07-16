@@ -1,5 +1,11 @@
 <template>
   <div>
+    <div class="text-gray-500 text-sm">
+       تنتهي صلاحة حسابك بتاريخ 
+      <strong class="mx-2">
+        {{ user.expire_at}}
+      </strong>
+    </div>
     <AccountForm :user="user" />
   </div>
 </template>
