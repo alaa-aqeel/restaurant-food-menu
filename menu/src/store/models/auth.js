@@ -41,7 +41,6 @@ const actions = {
             .then( (resp)=>{
                 commit('setAccessToken', resp.data.token)
                 commit('login', resp.data.data)
-                console.log(resp.data)
                 return resp
             })  
     },

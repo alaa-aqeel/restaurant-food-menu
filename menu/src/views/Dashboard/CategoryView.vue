@@ -72,7 +72,6 @@ const getCategories = ()=> {
     if (!categories.value.length) {
         store.dispatch("category/all")
     }
-    // console.log(categories)
 }
 onMounted(()=> getCategories())
 

@@ -95,7 +95,7 @@ const getAll =  (category) => {
             document.getElementsByTagName('title')
                     .item(0).innerText = store.state.restaurant.menu.title
     
-            initMessanger('511179799260358')
+            initMessanger(store.state.restaurant.menu.facebook_page_id)
             createMessanger()
         })
         .catch( ()=> {
