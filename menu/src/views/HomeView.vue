@@ -41,12 +41,7 @@
         <div id="fb-root"></div>
 
         <!-- Your Chat Plugin code -->
-        <div 
-            id="fb-customer-chat" 
-            class="fb-customerchat" 
-            :page_id="store.state.restaurant.menu.facebook_page_id"
-            attribution="biz_inbox"
-        >
+        <div id="fb-customer-chat" class="fb-customerchat">
         </div>
 
     </div>
@@ -68,22 +63,16 @@ const router = useRouter()
 const isLoading = ref(false)
 
 
+const initMessanger = (pageId)=> {
+    var chatbox = window.document.getElementById('fb-customer-chat');
+    chatbox.setAttribute("page_id", pageId);
+    chatbox.setAttribute("attribution", "biz_inbox");
+}
 
 const createMessanger = () => {
-     window.fbAsyncInit = function() {
-        FB.init({
-          xfbml            : true,
-          version          : 'v14.0'
-        });
-      };
-
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/ar_AR/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
+    window.fbAsyncInit = function() {
+        FB.init({xfbml:true,version: 'v14.0'});
+    };
 }
 
 const getAll =  (category) => {
@@ -95,6 +84,7 @@ const getAll =  (category) => {
             document.getElementsByTagName('title')
                     .item(0).innerText = store.state.restaurant.menu.title
     
+            initMessanger(store.state.restaurant.menu.facebook_page_id)
             createMessanger()
         })
         .catch( ()=> {
@@ -102,11 +92,12 @@ const getAll =  (category) => {
         })
 }
 
-
 onMounted(()=> {
     getAll('')
 
-
+    window.fbAsyncInit = function() {
+        FB.init({xfbml:true,version: 'v14.0'});
+    };
 })
 
 const baseURL = import.meta.env.VITE_API_DOWEN

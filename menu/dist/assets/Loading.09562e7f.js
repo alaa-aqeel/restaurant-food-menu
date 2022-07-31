@@ -1,1 +1,0 @@
-import{I as e}from"./iconify.15b82163.js";import{o,c as s,b as t,u as c}from"./index.58ebb13d.js";const a={class:"flex items-center justify-center py-12 h-96"},p={__name:"Loading",setup(n){return(r,i)=>(o(),s("div",a,[t(c(e),{icon:"eos-icons:bubble-loading",class:"w-28 h-28 p-1.5 text-gray-400"})]))}};export{p as default};
