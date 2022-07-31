@@ -36,13 +36,13 @@
             <Loading v-else />
         </div>
 
-        
+
+
         <!-- Messenger Chat Plugin Code -->
         <div id="fb-root"></div>
 
         <!-- Your Chat Plugin code -->
-        <div id="fb-customer-chat" class="fb-customerchat">
-        </div>
+        <div id="fb-customer-chat" class="fb-customerchat"></div>
 
     </div>
 </template>
@@ -70,7 +70,6 @@ const initMessanger = (pageId)=> {
 }
 
 const createMessanger = () => {
-
     window.fbAsyncInit = function() {
         window.FB.init({
             cookie: true,
@@ -78,6 +77,15 @@ const createMessanger = () => {
             version: 'v14.0'
         });
     };
+
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/ar_AR/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 }
 
 const getAll =  (category) => {
@@ -100,9 +108,6 @@ const getAll =  (category) => {
 onMounted(()=> {
     getAll('')
 
-    window.fbAsyncInit = function() {
-        FB.init({xfbml:true,version: 'v14.0'});
-    };
 })
 
 const baseURL = import.meta.env.VITE_API_DOWEN
