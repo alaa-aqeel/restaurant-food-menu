@@ -39,10 +39,10 @@
 
 
         <!-- Messenger Chat Plugin Code -->
-        <!-- <div id="fb-root"></div> -->
+        <div id="fb-root"></div>
 
         <!-- Your Chat Plugin code -->
-        <!-- <div id="fb-customer-chat" class="fb-customerchat"></div> -->
+        <div id="fb-customer-chat" class="fb-customerchat"></div>
 
     </div>
 </template>
@@ -97,8 +97,8 @@ const getAll =  (category) => {
             document.getElementsByTagName('title')
                     .item(0).innerText = store.state.restaurant.menu.title
     
-            // initMessanger(store.state.restaurant.menu.facebook_page_id)
-            // createMessanger()
+            initMessanger(store.state.restaurant.menu.facebook_page_id)
+            createMessanger()
         })
         .catch( ()=> {
             router.push({name: 'notfound'})
