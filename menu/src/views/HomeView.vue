@@ -66,12 +66,17 @@ const isLoading = ref(false)
 const initMessanger = (pageId)=> {
     var chatbox = window.document.getElementById('fb-customer-chat');
     chatbox.setAttribute("page_id", pageId);
-    chatbox.setAttribute("attribution", "biz_inbox");
+    chatbox.setAttribute("attribution", "setup_tool");
 }
 
 const createMessanger = () => {
+
     window.fbAsyncInit = function() {
-        FB.init({xfbml:true,version: 'v14.0'});
+        window.FB.init({
+            cookie: true,
+            xfbml:true,
+            version: 'v14.0'
+        });
     };
 }
 
