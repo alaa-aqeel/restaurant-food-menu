@@ -41,7 +41,12 @@
         <div id="fb-root"></div>
 
         <!-- Your Chat Plugin code -->
-        <div id="fb-customer-chat" class="fb-customerchat">
+        <div 
+            id="fb-customer-chat" 
+            class="fb-customerchat" 
+            :page_id="store.state.restaurant.menu.facebook_page_id"
+            attribution="biz_inbox"
+        >
         </div>
 
     </div>
@@ -63,11 +68,6 @@ const router = useRouter()
 const isLoading = ref(false)
 
 
-const initMessanger = (pageId)=> {
-    var chatbox = document.getElementById('fb-customer-chat');
-    chatbox.setAttribute("page_id", "PAGE-ID");
-    chatbox.setAttribute("attribution", "biz_inbox");
-}
 
 const createMessanger = () => {
      window.fbAsyncInit = function() {
@@ -95,7 +95,6 @@ const getAll =  (category) => {
             document.getElementsByTagName('title')
                     .item(0).innerText = store.state.restaurant.menu.title
     
-            initMessanger(store.state.restaurant.menu.facebook_page_id)
             createMessanger()
         })
         .catch( ()=> {
