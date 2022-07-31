@@ -50,6 +50,37 @@
                 </span>
             </div>
         </div>
+        <div class="grid md:grid-cols-2 grid-cols-1 gap-2 py-2">
+            <div >
+                <label class="text-sm font-bold px-1" for="email">
+                    رقم الهاتف الاول
+                </label>
+                <input name="phone_primary" v-model="menu.phone_primary"  placeholder="ادخل رقم الهاتف " class="border border-gray-300 rounded-lg p-2 w-full mt-1" />
+                <span v-for="(error, i) in errors.phone_primary" :key="i" class="text-red-600 px-1">
+                    {{ error }}
+                </span>
+            </div>
+            <div >
+                <label class="text-sm font-bold px-1" for="email">
+                    رقم الهاتف الثاني
+                </label>
+                <input name="phone_secondary" v-model="menu.phone_secondary"  placeholder="ادخل رقم الهاتف" class="border border-gray-300 rounded-lg p-2 w-full mt-1" />
+                <span v-for="(error, i) in errors.phone_secondary" :key="i" class="text-red-600 px-1">
+                    {{ error }}
+                </span>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 gap-2 py-2">
+            <div >
+                <label class="text-sm font-bold px-1" for="email">
+                    ادخل معرف الصفحة التواصل على الفيسبوك
+                </label>
+                <input name="facebook_page_id" v-model="menu.phone_primary"  placeholder="ادخل معرف الصفحة" class="border border-gray-300 rounded-lg p-2 w-full mt-1" />
+                <span v-for="(error, i) in errors.phone_primary" :key="i" class="text-red-600 px-1">
+                    {{ error }}
+                </span>
+            </div>
+        </div>
         <div >
             <label class="text-sm font-bold px-1" for="email">
                 وصف

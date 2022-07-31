@@ -22,6 +22,9 @@ class MenuResource extends JsonResource
             "work_time" => $this->work_time,
             "image" => $this->image,
             "description" => $this->description,
+            "phone_primary" => $this->phone_primary,
+            "phone_secondary" => $this->phone_secondary,
+            "facebook_page_id" => $this->facebook_page_id,
         ];
     }
 }

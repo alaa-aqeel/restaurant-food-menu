@@ -22,6 +22,9 @@ class Menu extends Model
         'image',
         'description',
         'user_id',
+        'phone_primary',
+        'phone_secondary',
+        'facebook_page_id'
     ];
 
     /**

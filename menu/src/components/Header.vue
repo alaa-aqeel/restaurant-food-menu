@@ -36,6 +36,24 @@
                         class="w-8 h-8  md:p-1 text-primary" />
                     
                 </a>
+                <a :href="`tel:${phone_primary}`" class="flex items-center gap-2 " v-if="phone_primary">
+                    <span>
+                        {{ phone_primary }}
+                    </span>
+                    <Icon 
+                        icon="fa:phone" 
+                        class="w-8 h-8 md:p-1 text-primary" />
+                    
+                </a>
+                <a :href="`tel:${phone_secondary}`" class="flex items-center gap-2" v-if="phone_secondary">
+                    <span>
+                        {{ phone_secondary }}
+                    </span>
+                    <Icon 
+                        icon="fa:phone" 
+                        class="w-8 h-8  md:p-1 text-primary" />
+                    
+                </a>
             </div>
         </div>
     </div>
@@ -62,7 +80,9 @@ defineProps({
     work_time: {
         type: String,
         default: '....'
-    }
+    },
+    phone_secondary: String,
+    phone_primary: String,
 })
 
 

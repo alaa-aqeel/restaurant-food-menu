@@ -5,6 +5,8 @@
             :image="baseURL+menu.image"
             :address="menu.address"
             :work_time="menu.work_time"
+            :phone_primary="menu.phone_primary"
+            :phone_secondary="menu.phone_secondary"
         />
         <div class="categories py-6 px-12 flex gap-4 overflow-y-scroll ">
             <chip name="الكل" @click="getAll('')" /> 
@@ -33,6 +35,15 @@
             </div>
             <Loading v-else />
         </div>
+
+        
+        <!-- Messenger Chat Plugin Code -->
+        <div id="fb-root"></div>
+
+        <!-- Your Chat Plugin code -->
+        <div id="fb-customer-chat" class="fb-customerchat">
+        </div>
+
     </div>
 </template>
 
@@ -52,6 +63,29 @@ const router = useRouter()
 const isLoading = ref(false)
 
 
+const initMessanger = (pageId)=> {
+    var chatbox = document.getElementById('fb-customer-chat');
+    chatbox.setAttribute("page_id", "PAGE-ID");
+    chatbox.setAttribute("attribution", "biz_inbox");
+}
+
+const createMessanger = () => {
+    window.fbAsyncInit = function() {
+        FB.init({
+            xfbml            : true,
+            version          : 'API-VERSION'
+        });
+    };
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+}
+
 const getAll =  (category) => {
     isLoading.value = true 
     return store.dispatch("restaurant/all", {slug: route.params.slug, category})
@@ -60,6 +94,9 @@ const getAll =  (category) => {
 
             document.getElementsByTagName('title')
                     .item(0).innerText = store.state.restaurant.menu.title
+    
+            initMessanger('511179799260358')
+            createMessanger()
         })
         .catch( ()=> {
             router.push({name: 'notfound'})
@@ -68,6 +105,8 @@ const getAll =  (category) => {
 
 onMounted(()=> {
     getAll('')
+
+
 })
 
 const baseURL = import.meta.env.VITE_API_DOWEN

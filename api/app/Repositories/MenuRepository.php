@@ -15,8 +15,6 @@ class MenuRepository extends BaseRepository  implements MenuRepositoryInterface
     }
 
 
-
-
     public function create(array $data)
     {
         $this->setSlugField($data, 'title');

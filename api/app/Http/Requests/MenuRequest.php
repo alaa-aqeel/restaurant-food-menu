@@ -35,6 +35,9 @@ class MenuRequest extends FormRequest
                 "max:2048",
             ],
             "description" => "nullable",
+            'phone_primary' => "nullable|min:11|max:15|unique:menus,phone_primary,".$this->menu,
+            'phone_secondary' =>  "nullable|min:11|max:15|unique:menus,phone_secondary,".$this->menu,
+            "facebook_page_id" => "nullable|unique:menus,facebook_page_id,".$this->menu,
         ];
     }
 }
