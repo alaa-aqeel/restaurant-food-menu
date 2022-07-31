@@ -75,8 +75,8 @@
                 <label class="text-sm font-bold px-1" for="email">
                     ادخل معرف الصفحة التواصل على الفيسبوك
                 </label>
-                <input name="facebook_page_id" v-model="menu.phone_primary"  placeholder="ادخل معرف الصفحة" class="border border-gray-300 rounded-lg p-2 w-full mt-1" />
-                <span v-for="(error, i) in errors.phone_primary" :key="i" class="text-red-600 px-1">
+                <input name="facebook_page_id" v-model="menu.facebook_page_id"  placeholder="ادخل معرف الصفحة" class="border border-gray-300 rounded-lg p-2 w-full mt-1" />
+                <span v-for="(error, i) in errors.facebook_page_id" :key="i" class="text-red-600 px-1">
                     {{ error }}
                 </span>
             </div>
