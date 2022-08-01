@@ -15,7 +15,7 @@
                 </router-link>
                 <div v-else class="flex gap-4">
                     <router-link 
-                        to="dashboard"
+                        to="/dashboard"
                         title="dashboard"
                         :disabled="store.state.auth.isLoadingProfile"
                         :class='{"hover:bg-gray-100 hover:text-gray-500 border-gray-600 text-gray-600": store.state.auth.isLoadingProfile}'

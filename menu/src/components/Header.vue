@@ -27,7 +27,7 @@
                         class="w-8 h-8 md:p-1 text-primary" />
                     
                 </a>
-                <a href="#" class="flex items-center gap-2">
+                <a target="_blank" :href="`https://www.google.com/maps/search/?api=1&query=${address}`" class="flex items-center gap-2">
                     <span class="text-second text-lg">
                         {{ address }}
                     </span>

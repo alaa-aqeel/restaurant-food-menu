@@ -51,6 +51,8 @@
 import { defineAsyncComponent, onMounted, computed, ref } from '@vue/runtime-core';
 import { useStore } from 'vuex';
 import { useRoute, useRouter } from 'vue-router'
+import { messangerInit } from '@/plugins/messanger.js'
+import { initSEO } from '@/plugins/seo.js'
 
 const chip = defineAsyncComponent(()=> import('@/components/Chip.vue'))
 const Header = defineAsyncComponent(()=> import('@/components/Header.vue'))
@@ -63,30 +65,7 @@ const router = useRouter()
 const isLoading = ref(false)
 
 
-const initMessanger = (pageId)=> {
-    var chatbox = window.document.getElementById('fb-customer-chat');
-    chatbox.setAttribute("page_id", pageId);
-    chatbox.setAttribute("attribution", "setup_tool");
-}
 
-const createMessanger = () => {
-    window.fbAsyncInit = function() {
-        window.FB.init({
-            cookie: true,
-            xfbml:true,
-            version: 'v14.0'
-        });
-    };
-
-
-    (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/ar_AR/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-}
 
 const getAll =  (category) => {
     isLoading.value = true 
@@ -94,11 +73,8 @@ const getAll =  (category) => {
         .then(()=> {
             isLoading.value = false
 
-            document.getElementsByTagName('title')
-                    .item(0).innerText = store.state.restaurant.menu.title
-    
-            initMessanger(store.state.restaurant.menu.facebook_page_id)
-            createMessanger()
+            initSEO(store.state.restaurant.menu)
+            messangerInit(store.state.restaurant.menu.facebook_page_id)
         })
         .catch( ()=> {
             router.push({name: 'notfound'})
