@@ -35,7 +35,7 @@
                 <label class="text-sm font-bold px-1" for="price">
                     السعر
                 </label>
-                <input name="price" v-model="food.price"  placeholder="السعر" class="border border-gray-300 rounded-lg p-2 w-full mt-1" />
+                <input name="price" type="number" v-model="food.price"  placeholder="السعر" class="border border-gray-300 rounded-lg p-2 w-full mt-1" />
                 <span v-for="(error, i) in errors.price" :key="i" class="text-red-600 px-1">
                     {{ error }}
                 </span>
