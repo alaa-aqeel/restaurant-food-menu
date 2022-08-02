@@ -4,7 +4,6 @@
         <Navbar />
         <div class="py-5 w-full md:px-0 px-2" v-if="image">
             <img 
-                
                 v-lazy="{
                     src:image,
                     loading: 'https://i.picsum.photos/id/200/200/300.jpg?blur=10&grayscale&hmac=TBuA0MmYHfKvEvCRGYQ_b7zlDe-DQ0lgxfUOU_HMgO4', 
@@ -34,7 +33,6 @@
                     <Icon 
                         icon="clarity:map-outline-badged" 
                         class="w-8 h-8  md:p-1 text-primary" />
-                    
                 </a>
                 <a :href="`tel:${phone_primary}`" class="flex items-center gap-2 " v-if="phone_primary">
                     <span>
