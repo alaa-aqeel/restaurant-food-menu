@@ -10,23 +10,27 @@
                     <div ref="canvas"></div>
                 </div>
                 <div class="flex  flex-wrap gap-2 py-4 w-full items-center justify-center">
-                    <div class="min-w-fit">
+                    <div class="min-w-fit ">
                         <input @change="onChangeFile" ref="file" hidden type="file" accept="image/png, image/jpeg">
-                        <button @click="$refs.file.click()" class="border px-4 py-1.5 rounded-lg active:bg-gray-700  bg-gray-800 hover:ring-2 hover:ring-gray-900 text-white">
-                            تغير الصوره
-                        </button>
+                        <div @click="$refs.file.click()" class="hover:shadow-md hover:shadow-gray-500 flex flex-col items-center border p-2 rounded-lg shadow">
+                            <Icon icon="fa:image" class="w-10 h-10 text-gray-600 " />
+                            <span  class="font-light text-sm text-gray-500 select-none">
+                                تغير الصوره
+                            </span>
+                        </div>
                     </div>
-                    <div class="min-w-fit">
-                        <input ref="bg" @change="onChangeBackground" hidden type="color" />
-                        <button @touchstart="$refs.bg.click()" @blur="$refs.bg.click()" @click="$refs.bg.click()" class="border px-4 py-1.5 rounded-lg active:bg-gray-700  bg-gray-800 hover:ring-2 hover:ring-gray-900 text-white">
+                    <div class="min-w-fit flex flex-col items-center border p-2 rounded-lg shadow">
+                        <input ref="bg" 
+                        class="hover:shadow-md hover:shadow-gray-500 shadow-sm shadow-gray-500  w-10 h-10" @change="onChangeBackground"  type="color" />
+                        <span class="font-light text-sm text-gray-500 select-none">
                             تغير لون الخلفية
-                        </button>
+                        </span>
                     </div>
-                    <div class="min-w-fit">
-                        <input ref="color" @change="onChangeColor" hidden type="color" />
-                        <button @touchstart="$refs.color.click()" @blur="$refs.color.click()" @click="$refs.color.click()" class="border px-4 py-1.5 rounded-lg active:bg-gray-700  bg-gray-800 hover:ring-2 hover:ring-gray-900 text-white">
-                            تغير لون الخطوط
-                        </button>
+                    <div class="min-w-fit flex flex-col items-center border p-2 rounded-lg shadow">
+                        <input ref="color" class="shadow-sm shadow-gray-500  w-10 h-10 hover:shadow-md hover:shadow-gray-500" @change="onChangeColor"  type="color" />
+                        <span class="font-light text-sm text-gray-500 select-none">
+                             تغير لون الخطوط
+                        </span>
                     </div>
                 </div>
                 <div>
@@ -50,7 +54,7 @@
 <script setup>
 import { ref, onMounted, defineProps } from "vue"
 import QRCodeStyling from "qr-code-styling";
-
+import { Icon } from "@iconify/vue";
 
 const props = defineProps({
     user: {
@@ -58,7 +62,6 @@ const props = defineProps({
         required: true,
     },
 })
-
 
 const canvas = ref(null)
 const qrCode = new QRCodeStyling({
@@ -87,12 +90,14 @@ const qrCode = new QRCodeStyling({
     }
 });
 
+
 const onChangeFile = ($event)=>{
     const blobURL = URL.createObjectURL($event.target.files[0])
     qrCode.update({image:blobURL}) 
 }
 
 const onChangeBackground = ($event)=> {
+
     qrCode.update({backgroundOptions: {color: $event.target.value}})
 }
 
