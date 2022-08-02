@@ -24,6 +24,8 @@ class MenuRequest extends FormRequest
      */
     public function rules()
     {
+        $menuId = $this->menu ? $this->menu :  auth()->user()->menu->id;
+
         return [
             "title" => "required|string|max:255",
             "address" => "required|string|max:255",
@@ -35,9 +37,9 @@ class MenuRequest extends FormRequest
                 "max:2048",
             ],
             "description" => "nullable",
-            'phone_primary' => "nullable|min:11|max:15|unique:menus,phone_primary,".$this->menu,
-            'phone_secondary' =>  "nullable|min:11|max:15|unique:menus,phone_secondary,".$this->menu,
-            "facebook_page_id" => "nullable|unique:menus,facebook_page_id,".$this->menu,
+            'phone_primary' => "nullable|min:11|max:15|unique:menus,phone_primary,".$menuId,
+            'phone_secondary' =>  "nullable|min:11|max:15|unique:menus,phone_secondary,".$menuId,
+            "facebook_page_id" => "nullable|unique:menus,facebook_page_id,".$menuId,
         ];
     }
 }
