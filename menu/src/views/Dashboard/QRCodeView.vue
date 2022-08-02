@@ -17,16 +17,16 @@
                         </button>
                     </div>
                     <div class="min-w-fit">
-                        <input ref="bg" @change="onChangeBackground" type="color" />
-                        <!-- <button @click="$refs.bg.click()" class="border px-4 py-1.5 rounded-lg active:bg-gray-700  bg-gray-800 hover:ring-2 hover:ring-gray-900 text-white">
+                        <input ref="bg" @change="onChangeBackground" hidden type="color" />
+                        <button @blur="$refs.color.click()" @click="$refs.bg.click()" class="border px-4 py-1.5 rounded-lg active:bg-gray-700  bg-gray-800 hover:ring-2 hover:ring-gray-900 text-white">
                             تغير لون الخلفية
-                        </button> -->
+                        </button>
                     </div>
                     <div class="min-w-fit">
-                        <input ref="color" @change="onChangeColor"  type="color" />
-                        <!-- <button @click="$refs.color.click()" class="border px-4 py-1.5 rounded-lg active:bg-gray-700  bg-gray-800 hover:ring-2 hover:ring-gray-900 text-white">
+                        <input ref="color" @change="onChangeColor" hidden type="color" />
+                        <button @blur="$refs.color.click()" @click="$refs.color.click()" class="border px-4 py-1.5 rounded-lg active:bg-gray-700  bg-gray-800 hover:ring-2 hover:ring-gray-900 text-white">
                             تغير لون الخطوط
-                        </button> -->
+                        </button>
                     </div>
                 </div>
                 <div>
