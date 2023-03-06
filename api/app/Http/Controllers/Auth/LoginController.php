@@ -17,7 +17,7 @@ class LoginController extends Controller
 
     private function AccountIsExpire($user)
     {
-        if ( $user->expire_at < now() ) {
+        if ( $user->expire_at < now() && $user->is_admin == 0 ) {
             abort(response()->json([
                 'message' => __('messages.account_expire'),
             ], 401));

@@ -46,6 +46,7 @@ class MenuController extends Controller
         $validatedData = $request->validated();
         $user = auth()->user();
 
+
         $menu = $user->menu 
             ? $this->menu->update($user->menu->id, $validatedData)
             : $this->menu->create($validatedData);

@@ -24,14 +24,14 @@ class MenuRequest extends FormRequest
      */
     public function rules()
     {
-        $menuId = $this->menu ? $this->menu :  auth()->user()->menu->id;
+        $menuId = $this->menu ? $this->menu :  auth()->user()?->menu?->id;
 
         return [
             "title" => "required|string|max:255",
             "address" => "required|string|max:255",
             "work_time" => "required|string|max:255",
             "image" => [
-                Rule::requiredIf(!auth()->user()->menu),
+                Rule::requiredIf(!auth()->user()?->menu),
                 "image",
                 "mimes:jpeg,png,jpg",
                 "max:2048",

@@ -16,7 +16,7 @@ class CheckUserExpierMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user()->expire_at < now()) {
+        if ($request->user()?->expire_at < now() && $request->user()->is_admin == 0) {
             return response()->json([
                 'message' => __('messages.account_expire'),
             ], 401);
