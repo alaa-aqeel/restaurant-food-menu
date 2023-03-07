@@ -32,7 +32,7 @@ class FoodRequest extends FormRequest
                     'image' => 'required|image',
                     'price' => 'required|integer|min:1',
                     'is_available' => 'integer',
-                    'description' => 'nullable|max:255',
+                    'description' => 'nullable|max:1024',
                     'category_id' => [
                         "required",
                         "integer",
