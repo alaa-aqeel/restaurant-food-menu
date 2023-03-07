@@ -1,17 +1,16 @@
 <template>
-  <div dir="rtl" class="relative md:flex md:flex-col gap-5 bg-back lg:py-6 p-2  border-2 hover:shadow-xl border-opacity-50 border-primary md:rounded-2xl rounded-lg ">
-
+  <div dir="rtl" class="relative cursor-pointer md:flex md:flex-col bg-gray-50 shadow hover:shadow-xl  md:rounded-2xl rounded-lg ">
         <div>
-            <div class="flex  lg:items-center lg:justify-center lg:flex-col gap-6 min-w-fit s">
+            <div class="flex px-2 md:py-1 py-2 lg:items-center lg:justify-center lg:flex-col gap-6 min-w-fit ">
                 <img 
                     :src="image" 
-                    class="lg:rounded-full rounded-lg lg:w-36 lg:h-36 w-24 h-24 object-cover object-center shadow-lg shadow-gray-400"
+                    class="rounded-xl lg:w-full lg:h-40 h-24 w-32 object-cover object-center shadow shadow-yellow-100"
                 >
-                <div class=" lg:text-center">
-                    <h1 class="md:text-xl break-words text-lg text-primary font-medium drop-shadow-lg ">
+                <div class="md:text-center lg:pb-2 md:p-0 p-0 pt-4">
+                    <h1 class="md:text-2xl break-words text-lg text-gray-900 font-medium drop-shadow-xl ">
                         {{ name }}
                     </h1>
-                    <h1 class="font-extrabold text-second mt-2">
+                    <h1 class="font-extrabold text-primary mt-2 text-2xl">
                         {{ priceFormat }}
                     </h1>
                 </div>
@@ -23,12 +22,11 @@
 
         <div 
             v-if="isManager"
-            class="flex gap-2 items-center justify-end lg:px-2"
+            class="flex gap-2 p-4 items-center justify-end lg:px-2"
         >
             <button 
                 @click="$emit('edit', id)" 
                 class="lg:rounded-full rounded-lg text-blue-500 border border-blue-500 px-4 p-2 hover:text-white hover:bg-blue-500 "
-                
             >
                 <Icon icon="fa:edit" />
             </button>

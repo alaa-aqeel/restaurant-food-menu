@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string("slug");
             $table->string("address");
             $table->string("work_time");
-            $table->string("image");
-            $table->string("description")->nullable();
+            // $table->string("image");
+            $table->text("description")->nullable();
             $table->timestamps();
 
             $table->foreignId("user_id")

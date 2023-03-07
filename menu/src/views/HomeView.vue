@@ -9,19 +9,23 @@
             :phone_secondary="menu.phone_secondary"
         />
         <div class="categories py-6 px-12 flex gap-4 overflow-y-scroll ">
-            <chip name="الكل" @click="getAll('')" /> 
+            <chip 
+                :active="selectCategory == ''"
+                name="الكل" 
+                @click="getAll('')" /> 
             <chip 
                 v-for="category in categories" 
                 :key="category.id" 
                 :name="category.name"
                 @click="getAll(category.id)"
+                :active="selectCategory == category.id"
             /> 
         </div>
 
         <div class="container mx-auto  py-12 px-2">
             <div 
                 v-if="!isLoading"
-                class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-4 gap-2">
+                class="grid xl:grid-cols-6 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-4 gap-2">
                 <Card 
                     v-for="f in food" :key="f.id" 
                     :name="f.name"
@@ -63,12 +67,13 @@ const store = useStore();
 const route = useRoute();
 const router = useRouter()
 const isLoading = ref(false)
-
+const selectCategory = ref(null)
 
 
 
 const getAll =  (category) => {
     isLoading.value = true 
+    selectCategory.value = category
     return store.dispatch("restaurant/all", {slug: route.params.slug, category})
         .then(()=> {
             isLoading.value = false

@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent="submit">
-        <div class="relative">
+        <!-- <div class="relative">
             <img 
                 ref="image"
                 :src="`${baseURL}${menu.image}`" 
@@ -20,7 +20,7 @@
             <span v-for="(error, i) in errors.image" :key="i" class="text-red-600 py-4 px-1">
                 {{ error }}
             </span>
-        </div>
+        </div> -->
         <div class="py-4">
             <label class="text-sm font-bold px-1" for="email">
                 الاسم

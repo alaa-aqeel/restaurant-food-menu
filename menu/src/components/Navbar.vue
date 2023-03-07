@@ -1,19 +1,19 @@
 <template>
     <div class="md:px-16 px-2 flex items-center">
-        <h1 class="font-bold text-3xl drop-shadow text-second">
-            Menu
+        <h1 class="font-bold text-3xl drop-shadow text-gray-700">
+            منيو
         </h1> 
         <div class="flex-1"></div>
         <div class="flex gap-3">
-                <router-link 
+                <!-- <router-link 
                     v-if="!store.state.auth.accessToken"
                     to="login" 
                     title="login"
                     class="hover:bg-blue-600 hover:text-white rounded-full border border-blue-600 text-blue-600"
                 >
                     <Icon  icon="fa:user" class="w-8 h-8 p-1.5 "   />
-                </router-link>
-                <div v-else class="flex gap-4">
+                </router-link> -->
+                <div v-if="store.state.auth.accessToken" class="flex gap-4">
                     <router-link 
                         to="/dashboard"
                         title="dashboard"
