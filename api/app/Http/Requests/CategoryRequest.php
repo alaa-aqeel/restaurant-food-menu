@@ -29,6 +29,7 @@ class CategoryRequest extends FormRequest
                 "required",
                 Rule::unique('categories', 'name')->where(fn ($q) => $q->where('menu_id', auth()->user()->menu->id)),
             ],
+            "image" => "nullable|image"
         ];
     }
 

@@ -30,12 +30,12 @@ class MenuRequest extends FormRequest
             "title" => "required|string|max:255",
             "address" => "required|string|max:255",
             "work_time" => "required|string|max:255",
-            // "image" => [
-            //     Rule::requiredIf(!auth()->user()?->menu),
-            //     "image",
-            //     "mimes:jpeg,png,jpg",
-            //     "max:2048",
-            // ],
+            "image" => [
+                "nullable",
+                "image",
+                "mimes:jpeg,png,jpg",
+                "max:2048",
+            ],
             "description" => "nullable",
             'phone_primary' => "nullable|min:11|max:15|unique:menus,phone_primary,".$menuId,
             'phone_secondary' =>  "nullable|min:11|max:15|unique:menus,phone_secondary,".$menuId,

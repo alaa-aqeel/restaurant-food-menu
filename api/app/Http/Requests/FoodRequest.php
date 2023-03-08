@@ -32,7 +32,7 @@ class FoodRequest extends FormRequest
                     'image' => 'required|image',
                     'price' => 'required|integer|min:1',
                     'is_available' => 'integer',
-                    'description' => 'nullable|max:1024',
+                    'description' => 'nullable',
                     'category_id' => [
                         "required",
                         "integer",
@@ -42,10 +42,10 @@ class FoodRequest extends FormRequest
             case 'PUT':
                 return [
                     'name' => 'required|string|max:255',
-                    'image' => 'image|max:255',
+                    'image' => 'image',
                     'price' => 'required|integer|min:1',
                     'is_available' => 'integer',
-                    'description' => 'nullable|max:255',
+                    'description' => 'nullable',
                     'category_id' => [
                         'required',
                         "integer",
