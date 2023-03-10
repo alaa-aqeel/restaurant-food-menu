@@ -40,6 +40,7 @@ class MenuRequest extends FormRequest
             'phone_primary' => "nullable|min:11|max:15|unique:menus,phone_primary,".$menuId,
             'phone_secondary' =>  "nullable|min:11|max:15|unique:menus,phone_secondary,".$menuId,
             "facebook_page_id" => "nullable|unique:menus,facebook_page_id,".$menuId,
+            "map_url" => "nullable|url",
         ];
     }
 }

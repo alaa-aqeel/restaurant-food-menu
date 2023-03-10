@@ -25,6 +25,7 @@ class MenuResource extends JsonResource
             "phone_primary" => $this->phone_primary,
             "phone_secondary" => $this->phone_secondary,
             "facebook_page_id" => $this->facebook_page_id,
+            "map_url" => $this->map_url,
         ];
     }
 }

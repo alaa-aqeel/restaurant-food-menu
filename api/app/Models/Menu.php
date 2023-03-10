@@ -24,7 +24,11 @@ class Menu extends Model
         'user_id',
         'phone_primary',
         'phone_secondary',
-        'facebook_page_id'
+        'facebook_page_id',
+        "map_url",
+        "color_title",
+        "color_text",
+        "background"
     ];
 
     /**

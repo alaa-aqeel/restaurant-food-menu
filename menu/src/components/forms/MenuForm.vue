@@ -42,6 +42,18 @@
             </div>
             <div >
                 <label class="text-sm font-bold px-1" for="email">
+                    رابط الخريطه
+                </label>
+                <input name="map_url" v-model="menu.map_url" placeholder="https://goo.gl/maps/"  
+                class="border border-gray-300 rounded-lg p-2 w-full mt-1"  dir="auto"/>
+                <span v-for="(error, i) in errors.map_url" :key="i" class="text-red-600 px-1">
+                    {{ error }}
+                </span>
+            </div>
+        </div>
+        <div>
+            <div >
+                <label class="text-sm font-bold px-1" for="email">
                     اوقات العمل
                 </label>
                 <input name="work_time" v-model="menu.work_time"  placeholder="مثل: من الساعه 10 صباح الى ساعه 10 ليل " class="border border-gray-300 rounded-lg p-2 w-full mt-1" />

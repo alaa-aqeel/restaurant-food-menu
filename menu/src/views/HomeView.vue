@@ -7,6 +7,7 @@
             :work_time="menu.work_time"
             :phone_primary="menu.phone_primary"
             :phone_secondary="menu.phone_secondary"
+            :description="menu.description"
         />
         <div class="categories py-6 px-12 flex gap-4 overflow-y-scroll ">
             <chip 
