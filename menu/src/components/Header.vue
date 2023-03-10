@@ -30,7 +30,7 @@
                 <a 
                     v-if="address" 
                     target="_blank" 
-                    :href="mapURL" 
+                    :href="getMapURL" 
                     class="flex items-start gap-2"
                 >
                     <Icon 
@@ -89,7 +89,7 @@ const props = defineProps({
         type: String,
         default: '....'
     },
-    map_url: {
+    mapURL: {
         type:String,
         default: "",
     },
@@ -99,9 +99,9 @@ const props = defineProps({
 })
 
 // https://www.google.com/maps/search/?api=1&query=${address}
-const mapURL = computed(()=> {
-    return props.map_url 
-        ? props.map_url 
+const getMapURL = computed(()=> {
+    return props.mapURL 
+        ? props.mapURL 
         : `https://www.google.com/maps/search/?api=1&query=${props.address}`
 })
 
