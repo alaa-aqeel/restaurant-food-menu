@@ -50,9 +50,9 @@
         <!-- Your Chat Plugin code -->
         <div id="fb-customer-chat" class="fb-customerchat"></div>
 
-        <div class="top-0 px-2 fixed py-4 text-end ">
+        <div class="bottom-0 left-0 px-2 fixed py-4 text-end ">
             <a href="https://etana-iq.com/" class="font-bold underline underline-offset-8 hover:text-blue-900 decoration-wavy hover:decoration-solid decoration-primary">
-            ايتانا للحلول البرمجية 
+                ايتانا للحلول البرمجية 
             </a>
         </div>
     </div>
