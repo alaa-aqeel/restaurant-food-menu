@@ -12,14 +12,14 @@
         />
         <div class="categories py-6 px-12 flex gap-4 overflow-y-scroll ">
             <chip 
-                :active="selectCategory == ''"
+                :active="selectCategory === null"
                 name="الكل" 
-                @click="getAll('')" /> 
+                @click="filter(null)" /> 
             <chip 
                 v-for="category in categories" 
                 :key="category.id" 
                 :name="category.name"
-                @click="getAll(category.id)"
+                @click="filter(category.id)"
                 :active="selectCategory == category.id"
             /> 
         </div>
@@ -70,33 +70,40 @@ const route = useRoute();
 const router = useRouter()
 const isLoading = ref(false)
 const selectCategory = ref(null)
+const food = ref([])
 
 
-
-const getAll =  (category) => {
+const getAll =  () => {
     isLoading.value = true 
-    selectCategory.value = category
-    return store.dispatch("restaurant/all", {slug: route.params.slug, category})
-        .then(()=> {
-            isLoading.value = false
 
+    return store.dispatch("restaurant/all", {slug: route.params.slug, category: ""})
+        .then(()=> {
+            isLoading.value = false         
+            
             initSEO(store.state.restaurant.menu)
             messangerInit(store.state.restaurant.menu.facebook_page_id)
-        })
-        .catch( ()=> {
-            router.push({name: 'notfound'})
+            food.value = store.getters["restaurant/food"]
         })
 }
 
-onMounted(()=> {
-    getAll('')
+const filter = (category) => {
+    selectCategory.value = category
+    if (category === null) {
+        food.value = store.getters["restaurant/food"]
+        return 
+    }
+    food.value = store.getters["restaurant/food"].filter(it=> it.category_id == category)
+}
 
+onMounted(()=> {
+
+    getAll('')
 })
 
 const baseURL = import.meta.env.VITE_API_DOWEN
 const menu = computed(()=> store.getters["restaurant/menu"])
 const categories = computed(()=> store.getters["restaurant/categories"])
-const food = computed(()=> store.getters["restaurant/food"])
+
 
 </script>
 

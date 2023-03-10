@@ -12,11 +12,11 @@
                 class="rounded-xl object-cover object-center w-full max-h-[564px] shadow-lg shadow-gray-400"
             >
         </div> -->
-        <div class="text-center md:pt-8 pt-4">
+        <div class="text-center md:pt-8 pt-4 flex-col">
             <h1 class="text-primary pt-10 lg:text-7xl text-4xl font-semibold drop-shadow-xl">
                 {{ title }}
             </h1>
-            <div class="flex md:flex-row flex-col md:gap-20 gap-2 md:items-end items-start  justify-center md:p-10 px-6 py-8">
+            <div class="flex md:flex-row flex-col md:gap-20 gap-2 md:items-end items-start  justify-center md:p-10 px-6 pt-8 pb-4">
                 <a v-if="work_time"  
                     class="flex items-start gap-2">
                     <Icon 
@@ -58,7 +58,7 @@
                     </a>
                 </div>
             </div>
-            <div class="md:w-2/3 md:mx-auto md:px-0 px-6">
+            <div class="md:w-2/3 md:mx-auto md:px-0 px-2">
                 <p class="text-gray-700">
                     {{ description }}
                 </p>

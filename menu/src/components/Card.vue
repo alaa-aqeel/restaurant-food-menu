@@ -3,6 +3,7 @@
         <div>
             <div class="flex px-2 md:py-1 py-2 lg:items-center lg:justify-center lg:flex-col gap-6 min-w-fit ">
                 <img 
+                    lazy="/favicon.png"
                     :src="image" 
                     class="rounded-xl lg:w-full lg:h-40 h-24 w-32 object-cover object-center shadow shadow-yellow-100"
                 >
