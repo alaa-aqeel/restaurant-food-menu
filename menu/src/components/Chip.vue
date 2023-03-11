@@ -7,7 +7,7 @@
             :class="active ? `bg-primary text-white` : ''"
         >
             <Icon :icon="icon" class="w-6 h-6" />
-            <span class="font-medium text-lg 0">
+            <span class="font-medium text-lg min-w-max">
                 {{ name }} 
             </span>
         </div>
