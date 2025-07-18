@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
-    "dotenv": "^16.0.1",
+    "dotenv": "^16.5.0",
     "qr-code-styling": "^1.6.0-rc.1",
     "vue": "^3.2.25",
     "vue-router": "^4.0.16",
